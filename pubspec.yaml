@@ -1,0 +1,26 @@
+name: httpx_client
+version: 1.0.0
+repository: https://github.com/anthochamp/dart-httpx-client
+
+environment:
+  sdk: '>=2.19.5 <3.0.0'
+
+dependencies:
+  async: ^2.11.0
+  anthochamp_dart_essentials: 
+    git: git@github.com:anthochamp/dart-essentials.git
+  collection: ^1.17.1
+  freezed_annotation: ^2.2.0
+  hive: ^2.2.3
+  http_parser: ^4.0.2
+  http2: ^2.0.1
+  mutex: ^3.0.1
+
+dev_dependencies:
+  anthochamp_lints:
+    git: git@github.com:anthochamp/dart-lints.git
+  build_runner: ^2.3.3
+  dart_code_metrics: ^5.7.2
+  freezed: ^2.3.2
+  lints: ^2.0.1
+  test: ^1.24.2
