@@ -15,7 +15,7 @@ class _Connection {
   final String host;
   final int port;
   final ClientTransportConnection transport;
-  final void Function(_Connection) onIdleTimeout;
+  final FutureOr<void> Function(_Connection) onIdleTimeout;
 
   _Connection({
     required this.host,
@@ -81,7 +81,7 @@ class HttpxHttp2Connections {
         host: host,
         port: port,
         transport: http2Transport,
-        onIdleTimeout: _onConnectionIdleTimeout,
+        onIdleTimeout: (connection) => _onConnectionIdleTimeout,
       );
 
       connection.startIdleTimeoutTimer(connectionIdleTimeout);
@@ -107,7 +107,7 @@ class HttpxHttp2Connections {
             ?.transport;
       });
 
-  void _onActiveStateChanged(
+  Future<void> _onActiveStateChanged(
     ClientTransportConnection transport,
     bool isActive,
   ) async {
@@ -137,7 +137,7 @@ class HttpxHttp2Connections {
     }
   }
 
-  void _onConnectionIdleTimeout(_Connection connection) async {
+  Future<void> _onConnectionIdleTimeout(_Connection connection) async {
     logCallback?.call(
       'Idling HTTP2 connection to ${connection.host}:${connection.port} timed-out, closing...',
     );

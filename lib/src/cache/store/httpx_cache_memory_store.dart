@@ -28,6 +28,7 @@ class HttpxCacheMemoryStore implements HttpxCacheStore {
 
     var entries = _cache[primaryKey] ?? <HttpxCacheStoreEntry>[];
 
+    /*
     if (entries.isEmpty && onGetCurlData != null) {
       final curlDataList = onGetCurlData!(primaryKey);
 
@@ -35,6 +36,7 @@ class HttpxCacheMemoryStore implements HttpxCacheStore {
 
       // TODO: add to cache
     }
+    */
 
     return entries.map((e) => e.clone());
   }

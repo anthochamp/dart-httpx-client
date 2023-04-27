@@ -11,11 +11,13 @@ import '../headers/httpx_headers.dart';
 import '../httpx_push_stream.dart';
 import 'httpx_http2_utilities.dart';
 
+/*
 class HttpxHttp2PushMessage implements HttpxPushMessage {
   HttpxHttp2PushMessage(this._http2TransportStreamPush);
 
   final TransportStreamPush _http2TransportStreamPush;
 }
+*/
 
 class HttpxHttp2PushStream extends Stream<HttpxPushMessage>
     implements HttpxPushStream {
