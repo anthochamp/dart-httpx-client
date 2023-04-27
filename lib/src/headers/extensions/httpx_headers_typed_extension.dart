@@ -1,7 +1,11 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'package:http_parser/http_parser.dart';
 
-import 'package:httpx_client/src/headers/httpx_headers.dart';
-import 'package:httpx_client/src/headers/httpx_headers_typedefs.dart';
+import '../httpx_headers.dart';
+import '../httpx_headers_typedefs.dart';
 
 extension HttpxHeadersTypedExtension on HttpxHeaders {
   void setDateTimeField(HttpxHeaderName name, DateTime? value) =>

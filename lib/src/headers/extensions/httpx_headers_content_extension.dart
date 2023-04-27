@@ -1,8 +1,12 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:httpx_client/src/headers/extensions/httpx_headers_typed_extension.dart';
-import 'package:httpx_client/src/headers/httpx_headers.dart';
+import '../httpx_headers.dart';
+import 'httpx_headers_typed_extension.dart';
 
 extension HttpxHeadersContentExtension on HttpxHeaders {
   ContentType? getContentType() {

@@ -1,14 +1,18 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:anthochamp_dart_essentials/dart_essentials.dart';
+import 'package:ac_dart_essentials/ac_dart_essentials.dart';
 import 'package:async/async.dart';
 
-import 'package:httpx_client/src/builtin_http/httpx_builtin_http_response.dart';
-import 'package:httpx_client/src/headers/httpx_headers.dart';
-import 'package:httpx_client/src/httpx_request.dart';
-import 'package:httpx_client/src/httpx_response.dart';
-import 'package:httpx_client/src/httpx_typedefs.dart';
+import '../headers/httpx_headers.dart';
+import '../httpx_request.dart';
+import '../httpx_response.dart';
+import '../httpx_typedefs.dart';
+import 'httpx_builtin_http_response.dart';
 
 class HttpxBuiltinHttpRequest implements HttpxRequest {
   @override

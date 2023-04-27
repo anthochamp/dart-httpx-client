@@ -1,12 +1,16 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'dart:async';
 import 'dart:io';
 
-import 'package:anthochamp_dart_essentials/dart_essentials.dart';
+import 'package:ac_dart_essentials/ac_dart_essentials.dart';
 
-import 'package:httpx_client/src/headers/httpx_headers.dart';
-import 'package:httpx_client/src/httpx_redirect_info.dart';
-import 'package:httpx_client/src/httpx_response.dart';
-import 'package:httpx_client/src/httpx_typedefs.dart';
+import '../headers/httpx_headers.dart';
+import '../httpx_redirect_info.dart';
+import '../httpx_response.dart';
+import '../httpx_typedefs.dart';
 
 class HttpxBuiltinHttpResponse extends Stream<List<int>>
     implements HttpxResponse {

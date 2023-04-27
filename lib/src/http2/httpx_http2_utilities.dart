@@ -1,9 +1,13 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:http2/http2.dart';
 
-import 'package:httpx_client/src/headers/httpx_headers.dart';
+import '../headers/httpx_headers.dart';
 
 class HttpxHttp2Utilities {
   static Map<String, String> http2HeadersDecode(HeadersStreamMessage message) =>

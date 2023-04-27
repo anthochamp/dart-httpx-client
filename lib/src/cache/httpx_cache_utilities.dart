@@ -1,13 +1,17 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'dart:math';
 
-import 'package:anthochamp_dart_essentials/dart_essentials.dart';
+import 'package:ac_dart_essentials/ac_dart_essentials.dart';
 
-import 'package:httpx_client/src/cache/store/httpx_cache_store_entry.dart';
-import 'package:httpx_client/src/headers/extensions/httpx_headers_cache_extension.dart';
-import 'package:httpx_client/src/headers/extensions/httpx_headers_proxy_extension.dart';
-import 'package:httpx_client/src/headers/httpx_headers.dart';
-import 'package:httpx_client/src/headers/httpx_headers_typedefs.dart';
-import 'package:httpx_client/src/httpx_response.dart';
+import '../headers/extensions/httpx_headers_cache_extension.dart';
+import '../headers/extensions/httpx_headers_proxy_extension.dart';
+import '../headers/httpx_headers.dart';
+import '../headers/httpx_headers_typedefs.dart';
+import '../httpx_response.dart';
+import 'store/httpx_cache_store_entry.dart';
 
 // https://datatracker.ietf.org/doc/html/rfc7231#section-4.2.1
 const kSafeHttpMethods = ['GET', 'HEAD', 'OPTIONS', 'TRACE'];

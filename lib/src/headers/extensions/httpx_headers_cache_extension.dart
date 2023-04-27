@@ -1,11 +1,15 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'dart:io';
 
-import 'package:anthochamp_dart_essentials/dart_essentials.dart';
+import 'package:ac_dart_essentials/ac_dart_essentials.dart';
 
-import 'package:httpx_client/src/headers/extensions/httpx_headers_typed_extension.dart';
-import 'package:httpx_client/src/headers/httpx_headers.dart';
-import 'package:httpx_client/src/headers/httpx_headers_typedefs.dart';
-import 'package:httpx_client/src/headers/httpx_headers_value_parser.dart';
+import '../httpx_headers.dart';
+import '../httpx_headers_typedefs.dart';
+import '../httpx_headers_value_parser.dart';
+import 'httpx_headers_typed_extension.dart';
 
 // https://www.iana.org/assignments/http-cache-directives/http-cache-directives.xhtml
 class HttpxCacheControl {

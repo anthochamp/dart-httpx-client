@@ -1,9 +1,13 @@
-import 'package:anthochamp_dart_essentials/dart_essentials.dart';
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
 
-import 'package:httpx_client/src/cache/httpx_cache_utilities.dart';
-import 'package:httpx_client/src/cache/store/httpx_cache_store_entry.dart';
-import 'package:httpx_client/src/headers/extensions/httpx_headers_cache_extension.dart';
-import 'package:httpx_client/src/headers/httpx_headers.dart';
+import 'package:ac_dart_essentials/ac_dart_essentials.dart';
+
+import '../headers/extensions/httpx_headers_cache_extension.dart';
+import '../headers/httpx_headers.dart';
+import 'httpx_cache_utilities.dart';
+import 'store/httpx_cache_store_entry.dart';
 
 class HttpxCacheContext {
   final DateTime referenceTime;
@@ -157,6 +161,6 @@ class HttpxCacheContext {
       'isStaleServeAllowed': isStaleServeAllowed,
       'isStaleWhileRevalidateAllowed': isStaleWhileRevalidateAllowed,
       'isStaleIfErrorAllowed': isStaleIfErrorAllowed,
-    }.inspect(InspectOptions(preferCompact: false));
+    }.inspect(const InspectOptions(preferCompact: false));
   }
 }

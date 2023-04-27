@@ -1,8 +1,12 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 // ignore_for_file:  member-ordering
 
-import 'package:anthochamp_dart_essentials/dart_essentials.dart';
+import 'package:ac_dart_essentials/ac_dart_essentials.dart';
 
-import 'package:httpx_client/src/headers/httpx_headers_typedefs.dart';
+import 'httpx_headers_typedefs.dart';
 
 class HttpxHeaderValueParser {
   // https://httpwg.org/specs/rfc9110.html#rfc.section.2.1
@@ -37,8 +41,8 @@ class HttpxHeaderValueParser {
   }) =>
       '(?:[ \\t]|$httpVcharPattern|$httpObsTextPattern)'.inoutCapture(
         prePattern: r'\\',
-        inPatternName: inName,
-        outPatternName: outName,
+        inCaptureName: inName,
+        outCaptureName: outName,
       );
   static String composeHttpQuotedStringPattern({
     String? outName,
@@ -47,8 +51,8 @@ class HttpxHeaderValueParser {
       '(?:$httpQdtextPattern|${composeHttpQuotedPairPattern()})*'.inoutCapture(
         prePattern: r'"',
         postPattern: r'"',
-        inPatternName: inName,
-        outPatternName: outName,
+        inCaptureName: inName,
+        outCaptureName: outName,
       );
 
   // https://httpwg.org/specs/rfc9110.html#rfc.section.5.6.5
@@ -88,8 +92,8 @@ class HttpxHeaderValueParser {
           .inoutCapture(
         prePattern: r'\(',
         postPattern: r'\)',
-        inPatternName: inName,
-        outPatternName: outName,
+        inCaptureName: inName,
+        outCaptureName: outName,
       );
 
   static String composeHttpCommentPattern({
@@ -101,8 +105,8 @@ class HttpxHeaderValueParser {
           .inoutCapture(
         prePattern: r'\(',
         postPattern: r'\)',
-        inPatternName: inName,
-        outPatternName: outName,
+        inCaptureName: inName,
+        outCaptureName: outName,
       );
 
   static List<String> splitByWs(HttpxHeaderValue value) =>

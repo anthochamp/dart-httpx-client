@@ -1,9 +1,13 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'dart:io';
 
 import 'package:http2/http2.dart' show ClientSettings;
 
-import 'package:httpx_client/src/cache/httpx_cache_policy.dart';
-import 'package:httpx_client/src/headers/httpx_headers.dart';
+import 'cache/httpx_cache_policy.dart';
+import 'headers/httpx_headers.dart';
 
 const kInitialDefaultMaxRedirects = 5;
 

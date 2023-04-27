@@ -1,9 +1,13 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'dart:async';
 import 'dart:io';
 
 import 'package:mutex/mutex.dart';
 
-import 'package:httpx_client/src/httpx_typedefs.dart';
+import '../httpx_typedefs.dart';
 
 class _PendingSocket {
   final String host;

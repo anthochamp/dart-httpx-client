@@ -1,14 +1,18 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 // ignore_for_file: prefer-moving-to-variable
 
 import 'dart:async';
 
 import 'package:hive/hive.dart';
 
-import 'package:httpx_client/src/cache/store/httpx_cache_store.dart';
-import 'package:httpx_client/src/cache/store/httpx_cache_store_entry.dart';
-import 'package:httpx_client/src/headers/httpx_headers.dart';
-import 'package:httpx_client/src/headers/httpx_headers_typedefs.dart';
-import 'package:httpx_client/src/httpx_redirect_info.dart';
+import '../../headers/httpx_headers.dart';
+import '../../headers/httpx_headers_typedefs.dart';
+import '../../httpx_redirect_info.dart';
+import 'httpx_cache_store.dart';
+import 'httpx_cache_store_entry.dart';
 
 class _HiveRecord {
   final HttpxCacheStorePk primaryKey;

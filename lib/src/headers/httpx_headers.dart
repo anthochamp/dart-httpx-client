@@ -1,11 +1,15 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'dart:io';
 
-import 'package:anthochamp_dart_essentials/dart_essentials.dart';
+import 'package:ac_dart_essentials/ac_dart_essentials.dart';
 import 'package:collection/collection.dart';
 import 'package:http_parser/http_parser.dart';
 
-import 'package:httpx_client/src/headers/httpx_headers_typedefs.dart';
-import 'package:httpx_client/src/headers/httpx_headers_value_parser.dart';
+import 'httpx_headers_typedefs.dart';
+import 'httpx_headers_value_parser.dart';
 
 typedef _HttpxHeadersMap = CaseInsensitiveMap<HttpxHeaderValues>;
 
@@ -243,7 +247,7 @@ class HttpxHeaders {
           ),
         );
       }
-    }).inspect(InspectOptions(
+    }).inspect(const InspectOptions(
       mapKeyValueSep: ': ',
       preferCompact: false,
     ));

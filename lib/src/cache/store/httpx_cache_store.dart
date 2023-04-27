@@ -1,7 +1,11 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'dart:async';
 
-import 'package:httpx_client/src/cache/store/httpx_cache_store_entry.dart';
-import 'package:httpx_client/src/headers/httpx_headers_typedefs.dart';
+import '../../headers/httpx_headers_typedefs.dart';
+import 'httpx_cache_store_entry.dart';
 
 typedef HttpxCacheStorePk = Uri;
 

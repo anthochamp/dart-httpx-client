@@ -1,13 +1,17 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'dart:async';
 import 'dart:io';
 
 import 'package:http2/http2.dart';
 
-import 'package:httpx_client/src/headers/httpx_headers.dart';
-import 'package:httpx_client/src/http2/httpx_http2_utilities.dart';
-import 'package:httpx_client/src/httpx_redirect_info.dart';
-import 'package:httpx_client/src/httpx_response.dart';
-import 'package:httpx_client/src/httpx_typedefs.dart';
+import '../headers/httpx_headers.dart';
+import '../httpx_redirect_info.dart';
+import '../httpx_response.dart';
+import '../httpx_typedefs.dart';
+import 'httpx_http2_utilities.dart';
 
 class HttpxHttp2Response extends Stream<List<int>> implements HttpxResponse {
   @override

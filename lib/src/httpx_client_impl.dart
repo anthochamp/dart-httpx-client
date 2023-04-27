@@ -1,26 +1,30 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:anthochamp_dart_essentials/dart_essentials.dart';
+import 'package:ac_dart_essentials/ac_dart_essentials.dart';
 import 'package:http2/http2.dart' as http2;
 
-import 'package:httpx_client/src/builtin_http/httpx_builtin_http_connections.dart';
-import 'package:httpx_client/src/builtin_http/httpx_builtin_http_request.dart';
-import 'package:httpx_client/src/cache/httpx_cache_impl.dart';
-import 'package:httpx_client/src/cache/httpx_cache_policy.dart';
-import 'package:httpx_client/src/cache/store/httpx_cache_store.dart';
-import 'package:httpx_client/src/headers/httpx_headers.dart';
-import 'package:httpx_client/src/http2/httpx_http2_connections.dart';
-import 'package:httpx_client/src/http2/httpx_http2_push_stream.dart';
-import 'package:httpx_client/src/http2/httpx_http2_request.dart';
-import 'package:httpx_client/src/httpx_client.dart';
-import 'package:httpx_client/src/httpx_credentials.dart';
-import 'package:httpx_client/src/httpx_defaults.dart';
-import 'package:httpx_client/src/httpx_push_stream.dart';
-import 'package:httpx_client/src/httpx_request.dart';
-import 'package:httpx_client/src/httpx_request_impl.dart';
-import 'package:httpx_client/src/httpx_typedefs.dart';
+import 'builtin_http/httpx_builtin_http_connections.dart';
+import 'builtin_http/httpx_builtin_http_request.dart';
+import 'cache/httpx_cache_impl.dart';
+import 'cache/httpx_cache_policy.dart';
+import 'cache/store/httpx_cache_store.dart';
+import 'headers/httpx_headers.dart';
+import 'http2/httpx_http2_connections.dart';
+import 'http2/httpx_http2_push_stream.dart';
+import 'http2/httpx_http2_request.dart';
+import 'httpx_client.dart';
+import 'httpx_credentials.dart';
+import 'httpx_defaults.dart';
+import 'httpx_push_stream.dart';
+import 'httpx_request.dart';
+import 'httpx_request_impl.dart';
+import 'httpx_typedefs.dart';
 
 class HttpxClientImpl implements HttpxClient {
   HttpxClientImpl() {

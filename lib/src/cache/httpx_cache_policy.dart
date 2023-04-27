@@ -1,8 +1,12 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 enum HttpxCachePolicy {
   /// Standard behaviour.
   standard,
 
-  /// Behaves as if there is no HTTP cache. It will still update the cache
+  /// Behaves as if there is no HTTP cache for the request. It will still update the cache
   /// with the response.
   straightToNetwork,
 

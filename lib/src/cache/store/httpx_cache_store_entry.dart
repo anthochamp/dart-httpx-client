@@ -1,6 +1,10 @@
-import 'package:httpx_client/src/headers/httpx_headers.dart';
-import 'package:httpx_client/src/httpx_redirect_info.dart';
-import 'package:httpx_client/src/httpx_response.dart';
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+import '../../headers/httpx_headers.dart';
+import '../../httpx_redirect_info.dart';
+import '../../httpx_response.dart';
 
 class HttpxCacheStoreEntry {
   final DateTime firstByteSentTime;

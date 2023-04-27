@@ -1,11 +1,15 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'dart:async';
 
-import 'package:anthochamp_dart_essentials/dart_essentials.dart';
+import 'package:ac_dart_essentials/ac_dart_essentials.dart';
 import 'package:http2/http2.dart';
 
-import 'package:httpx_client/src/headers/httpx_headers.dart';
-import 'package:httpx_client/src/http2/httpx_http2_utilities.dart';
-import 'package:httpx_client/src/httpx_push_stream.dart';
+import '../headers/httpx_headers.dart';
+import '../httpx_push_stream.dart';
+import 'httpx_http2_utilities.dart';
 
 class HttpxHttp2PushMessage implements HttpxPushMessage {
   HttpxHttp2PushMessage(this._http2TransportStreamPush);

@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 
-import 'package:httpx_client/src/headers/extensions/httpx_headers_cache_extension.dart';
-import 'package:httpx_client/src/headers/httpx_headers.dart';
+import 'package:ac_httpx_client/ac_httpx_client.dart';
 
 void main() {
   group('CacheControl', () {

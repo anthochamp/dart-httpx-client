@@ -1,12 +1,16 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'dart:async';
 import 'dart:io';
 
-import 'package:httpx_client/src/cache/httpx_cache_context.dart';
-import 'package:httpx_client/src/cache/store/httpx_cache_store_entry.dart';
-import 'package:httpx_client/src/headers/extensions/httpx_headers_cache_extension.dart';
-import 'package:httpx_client/src/headers/httpx_headers.dart';
-import 'package:httpx_client/src/httpx_redirect_info.dart';
-import 'package:httpx_client/src/httpx_response.dart';
+import '../headers/extensions/httpx_headers_cache_extension.dart';
+import '../headers/httpx_headers.dart';
+import '../httpx_redirect_info.dart';
+import '../httpx_response.dart';
+import 'httpx_cache_context.dart';
+import 'store/httpx_cache_store_entry.dart';
 
 class HttpxCacheResponse extends Stream<List<int>> implements HttpxResponse {
   @override
