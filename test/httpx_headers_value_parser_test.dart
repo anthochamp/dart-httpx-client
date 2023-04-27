@@ -82,7 +82,8 @@ void main() {
     test('mixed', () {
       expect(
         HttpxHeaderValueParser.parseHttpList(
-            'Sun Nov  6 08:49:37 1994, Sunday, 06-Nov-94 08:49:37 GMT, Sun, 06 Nov 1994 08:49:37 GMT, "hello, friend!", token'),
+          'Sun Nov  6 08:49:37 1994, Sunday, 06-Nov-94 08:49:37 GMT, Sun, 06 Nov 1994 08:49:37 GMT, "hello, friend!", token',
+        ),
         equals([
           'Sun Nov  6 08:49:37 1994',
           'Sunday, 06-Nov-94 08:49:37 GMT',

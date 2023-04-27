@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:httpx_client/src/headers/httpx_headers.dart';
 import 'package:httpx_client/src/httpx_redirect_info.dart';
-import 'package:httpx_client/src/httpx_request.dart';
 import 'package:httpx_client/src/httpx_response.dart';
 
 class HttpxCacheStoreEntry {

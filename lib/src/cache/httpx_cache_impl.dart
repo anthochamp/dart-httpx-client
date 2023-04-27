@@ -3,10 +3,10 @@ import 'dart:io';
 
 import 'package:anthochamp_dart_essentials/dart_essentials.dart';
 import 'package:collection/collection.dart';
-import 'package:httpx_client/httpx_client.dart';
 
 import 'package:httpx_client/src/cache/httpx_cache.dart';
 import 'package:httpx_client/src/cache/httpx_cache_context.dart';
+import 'package:httpx_client/src/cache/httpx_cache_policy.dart';
 import 'package:httpx_client/src/cache/httpx_cache_response.dart';
 import 'package:httpx_client/src/cache/httpx_cache_utilities.dart';
 import 'package:httpx_client/src/cache/store/httpx_cache_combined_store.dart';
@@ -14,6 +14,9 @@ import 'package:httpx_client/src/cache/store/httpx_cache_store.dart';
 import 'package:httpx_client/src/cache/store/httpx_cache_store_entry.dart';
 import 'package:httpx_client/src/headers/extensions/httpx_headers_cache_extension.dart';
 import 'package:httpx_client/src/headers/extensions/httpx_headers_typed_extension.dart';
+import 'package:httpx_client/src/headers/httpx_headers.dart';
+import 'package:httpx_client/src/httpx_request.dart';
+import 'package:httpx_client/src/httpx_response.dart';
 import 'package:httpx_client/src/httpx_typedefs.dart';
 
 // https://datatracker.ietf.org/doc/html/rfc7231#section-6.1
