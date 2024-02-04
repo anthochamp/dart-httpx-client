@@ -1,6 +1,6 @@
-// Copyright 2023, Anthony Champagne. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+//
+// SPDX-License-Identifier: BSD-3-Clause
 
 export 'src/cache/store/httpx_cache_combined_store.dart';
 export 'src/cache/store/httpx_cache_hive_store.dart';
