@@ -12,7 +12,7 @@ part of 'httpx_credentials.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$HttpxCredentials {
@@ -111,11 +111,12 @@ class _$HttpxCredentialsCopyWithImpl<$Res, $Val extends HttpxCredentials>
 }
 
 /// @nodoc
-abstract class _$$HttpxCredentialsBasicCopyWith<$Res>
+abstract class _$$HttpxCredentialsBasicImplCopyWith<$Res>
     implements $HttpxCredentialsCopyWith<$Res> {
-  factory _$$HttpxCredentialsBasicCopyWith(_$HttpxCredentialsBasic value,
-          $Res Function(_$HttpxCredentialsBasic) then) =
-      __$$HttpxCredentialsBasicCopyWithImpl<$Res>;
+  factory _$$HttpxCredentialsBasicImplCopyWith(
+          _$HttpxCredentialsBasicImpl value,
+          $Res Function(_$HttpxCredentialsBasicImpl) then) =
+      __$$HttpxCredentialsBasicImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -123,11 +124,11 @@ abstract class _$$HttpxCredentialsBasicCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$HttpxCredentialsBasicCopyWithImpl<$Res>
-    extends _$HttpxCredentialsCopyWithImpl<$Res, _$HttpxCredentialsBasic>
-    implements _$$HttpxCredentialsBasicCopyWith<$Res> {
-  __$$HttpxCredentialsBasicCopyWithImpl(_$HttpxCredentialsBasic _value,
-      $Res Function(_$HttpxCredentialsBasic) _then)
+class __$$HttpxCredentialsBasicImplCopyWithImpl<$Res>
+    extends _$HttpxCredentialsCopyWithImpl<$Res, _$HttpxCredentialsBasicImpl>
+    implements _$$HttpxCredentialsBasicImplCopyWith<$Res> {
+  __$$HttpxCredentialsBasicImplCopyWithImpl(_$HttpxCredentialsBasicImpl _value,
+      $Res Function(_$HttpxCredentialsBasicImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -138,7 +139,7 @@ class __$$HttpxCredentialsBasicCopyWithImpl<$Res>
     Object? password = null,
     Object? proxyCredentials = null,
   }) {
-    return _then(_$HttpxCredentialsBasic(
+    return _then(_$HttpxCredentialsBasicImpl(
       realm: null == realm
           ? _value.realm
           : realm // ignore: cast_nullable_to_non_nullable
@@ -161,8 +162,8 @@ class __$$HttpxCredentialsBasicCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HttpxCredentialsBasic implements HttpxCredentialsBasic {
-  const _$HttpxCredentialsBasic(
+class _$HttpxCredentialsBasicImpl implements HttpxCredentialsBasic {
+  const _$HttpxCredentialsBasicImpl(
       {required this.realm,
       required this.username,
       required this.password,
@@ -184,10 +185,10 @@ class _$HttpxCredentialsBasic implements HttpxCredentialsBasic {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HttpxCredentialsBasic &&
+            other is _$HttpxCredentialsBasicImpl &&
             (identical(other.realm, realm) || other.realm == realm) &&
             (identical(other.username, username) ||
                 other.username == username) &&
@@ -204,9 +205,9 @@ class _$HttpxCredentialsBasic implements HttpxCredentialsBasic {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HttpxCredentialsBasicCopyWith<_$HttpxCredentialsBasic> get copyWith =>
-      __$$HttpxCredentialsBasicCopyWithImpl<_$HttpxCredentialsBasic>(
-          this, _$identity);
+  _$$HttpxCredentialsBasicImplCopyWith<_$HttpxCredentialsBasicImpl>
+      get copyWith => __$$HttpxCredentialsBasicImplCopyWithImpl<
+          _$HttpxCredentialsBasicImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -286,7 +287,7 @@ abstract class HttpxCredentialsBasic implements HttpxCredentials {
       {required final String realm,
       required final String username,
       required final String password,
-      final bool proxyCredentials}) = _$HttpxCredentialsBasic;
+      final bool proxyCredentials}) = _$HttpxCredentialsBasicImpl;
 
   @override
   String get realm;
@@ -296,27 +297,29 @@ abstract class HttpxCredentialsBasic implements HttpxCredentials {
   bool get proxyCredentials;
   @override
   @JsonKey(ignore: true)
-  _$$HttpxCredentialsBasicCopyWith<_$HttpxCredentialsBasic> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$HttpxCredentialsBasicImplCopyWith<_$HttpxCredentialsBasicImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$HttpxCredentialsBearerCopyWith<$Res>
+abstract class _$$HttpxCredentialsBearerImplCopyWith<$Res>
     implements $HttpxCredentialsCopyWith<$Res> {
-  factory _$$HttpxCredentialsBearerCopyWith(_$HttpxCredentialsBearer value,
-          $Res Function(_$HttpxCredentialsBearer) then) =
-      __$$HttpxCredentialsBearerCopyWithImpl<$Res>;
+  factory _$$HttpxCredentialsBearerImplCopyWith(
+          _$HttpxCredentialsBearerImpl value,
+          $Res Function(_$HttpxCredentialsBearerImpl) then) =
+      __$$HttpxCredentialsBearerImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? realm, String accessToken, bool proxyCredentials});
 }
 
 /// @nodoc
-class __$$HttpxCredentialsBearerCopyWithImpl<$Res>
-    extends _$HttpxCredentialsCopyWithImpl<$Res, _$HttpxCredentialsBearer>
-    implements _$$HttpxCredentialsBearerCopyWith<$Res> {
-  __$$HttpxCredentialsBearerCopyWithImpl(_$HttpxCredentialsBearer _value,
-      $Res Function(_$HttpxCredentialsBearer) _then)
+class __$$HttpxCredentialsBearerImplCopyWithImpl<$Res>
+    extends _$HttpxCredentialsCopyWithImpl<$Res, _$HttpxCredentialsBearerImpl>
+    implements _$$HttpxCredentialsBearerImplCopyWith<$Res> {
+  __$$HttpxCredentialsBearerImplCopyWithImpl(
+      _$HttpxCredentialsBearerImpl _value,
+      $Res Function(_$HttpxCredentialsBearerImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -326,7 +329,7 @@ class __$$HttpxCredentialsBearerCopyWithImpl<$Res>
     Object? accessToken = null,
     Object? proxyCredentials = null,
   }) {
-    return _then(_$HttpxCredentialsBearer(
+    return _then(_$HttpxCredentialsBearerImpl(
       realm: freezed == realm
           ? _value.realm
           : realm // ignore: cast_nullable_to_non_nullable
@@ -345,8 +348,8 @@ class __$$HttpxCredentialsBearerCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HttpxCredentialsBearer implements HttpxCredentialsBearer {
-  const _$HttpxCredentialsBearer(
+class _$HttpxCredentialsBearerImpl implements HttpxCredentialsBearer {
+  const _$HttpxCredentialsBearerImpl(
       {this.realm, required this.accessToken, this.proxyCredentials = false});
 
   @override
@@ -363,10 +366,10 @@ class _$HttpxCredentialsBearer implements HttpxCredentialsBearer {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HttpxCredentialsBearer &&
+            other is _$HttpxCredentialsBearerImpl &&
             (identical(other.realm, realm) || other.realm == realm) &&
             (identical(other.accessToken, accessToken) ||
                 other.accessToken == accessToken) &&
@@ -381,9 +384,9 @@ class _$HttpxCredentialsBearer implements HttpxCredentialsBearer {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HttpxCredentialsBearerCopyWith<_$HttpxCredentialsBearer> get copyWith =>
-      __$$HttpxCredentialsBearerCopyWithImpl<_$HttpxCredentialsBearer>(
-          this, _$identity);
+  _$$HttpxCredentialsBearerImplCopyWith<_$HttpxCredentialsBearerImpl>
+      get copyWith => __$$HttpxCredentialsBearerImplCopyWithImpl<
+          _$HttpxCredentialsBearerImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -462,7 +465,7 @@ abstract class HttpxCredentialsBearer implements HttpxCredentials {
   const factory HttpxCredentialsBearer(
       {final String? realm,
       required final String accessToken,
-      final bool proxyCredentials}) = _$HttpxCredentialsBearer;
+      final bool proxyCredentials}) = _$HttpxCredentialsBearerImpl;
 
   @override
   String? get realm;
@@ -471,6 +474,6 @@ abstract class HttpxCredentialsBearer implements HttpxCredentials {
   bool get proxyCredentials;
   @override
   @JsonKey(ignore: true)
-  _$$HttpxCredentialsBearerCopyWith<_$HttpxCredentialsBearer> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$HttpxCredentialsBearerImplCopyWith<_$HttpxCredentialsBearerImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

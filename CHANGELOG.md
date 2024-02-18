@@ -1,3 +1,8 @@
+## 0.1.2
+
+- Upgrade freezed/freezed_annotation packages (lint generated files)
+- Upgrade ac_lints package to 0.3.0
+
 ## 0.1.1
 
 - Update LICENSE's copyright to include contributors and use SPDX file header
