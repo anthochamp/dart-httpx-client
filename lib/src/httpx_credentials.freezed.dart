@@ -67,7 +67,9 @@ mixin _$HttpxCredentials {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HttpxCredentials
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HttpxCredentialsCopyWith<HttpxCredentials> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -91,6 +93,8 @@ class _$HttpxCredentialsCopyWithImpl<$Res, $Val extends HttpxCredentials>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of HttpxCredentials
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -131,6 +135,8 @@ class __$$HttpxCredentialsBasicImplCopyWithImpl<$Res>
       $Res Function(_$HttpxCredentialsBasicImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HttpxCredentials
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -202,7 +208,9 @@ class _$HttpxCredentialsBasicImpl implements HttpxCredentialsBasic {
   int get hashCode =>
       Object.hash(runtimeType, realm, username, password, proxyCredentials);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HttpxCredentials
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HttpxCredentialsBasicImplCopyWith<_$HttpxCredentialsBasicImpl>
@@ -295,8 +303,11 @@ abstract class HttpxCredentialsBasic implements HttpxCredentials {
   String get password;
   @override
   bool get proxyCredentials;
+
+  /// Create a copy of HttpxCredentials
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HttpxCredentialsBasicImplCopyWith<_$HttpxCredentialsBasicImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -322,6 +333,8 @@ class __$$HttpxCredentialsBearerImplCopyWithImpl<$Res>
       $Res Function(_$HttpxCredentialsBearerImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HttpxCredentials
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -381,7 +394,9 @@ class _$HttpxCredentialsBearerImpl implements HttpxCredentialsBearer {
   int get hashCode =>
       Object.hash(runtimeType, realm, accessToken, proxyCredentials);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HttpxCredentials
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HttpxCredentialsBearerImplCopyWith<_$HttpxCredentialsBearerImpl>
@@ -472,8 +487,11 @@ abstract class HttpxCredentialsBearer implements HttpxCredentials {
   String get accessToken;
   @override
   bool get proxyCredentials;
+
+  /// Create a copy of HttpxCredentials
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HttpxCredentialsBearerImplCopyWith<_$HttpxCredentialsBearerImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

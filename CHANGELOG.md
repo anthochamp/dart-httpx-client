@@ -1,3 +1,8 @@
+## 0.2.0
+
+- Upgrade freezed/freezed_annotation packages
+- Upgrade ac_lints package to 0.4.0
+
 ## 0.1.2
 
 - Upgrade freezed/freezed_annotation packages (lint generated files)
