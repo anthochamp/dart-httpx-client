@@ -1,18 +1,22 @@
 # Yet Another HTTP client
 
-HTTP1/2 client in the style of Dart's HttpClient with an integrated RFC-compliant private cache.
+HTTP1/2 client in the style of Dart's HttpClient with an integrated RFC-compliant
+private cache.
 
-This package exists to support the [ac_fetch](https://pub.dev/packages/ac_fetch) package. You might want to check it, it allows easier data management.
+This package exists to support the [ac_fetch](https://pub.dev/packages/ac_fetch)
+package. You might want to check it, it allows easier data management.
 
 ## Features
 
 What it implements:
 
 - HTTP/1 client using [dart:io's HttpClient](https://api.dart.dev/dart-io/HttpClient-class.html);
-- HTTP/2 client using [http2 package](https://pub.dev/packages/http2) with automatic fallback to HTTP/1 without severing the TCP connection;
+- HTTP/2 client using [http2 package](https://pub.dev/packages/http2) with
+automatic fallback to HTTP/1 without severing the TCP connection;
 - HTTP headers (parsing, folding, sensitive-data-aware formatting, etc.);
 - HTTP credentials;
-- [RFC-7231](https://datatracker.ietf.org/doc/html/rfc7231) and [RFC-5861](https://datatracker.ietf.org/doc/html/rfc5861) compliant HTTP private cache (with limitations, see below).
+- [RFC-7231](https://datatracker.ietf.org/doc/html/rfc7231) and [RFC-5861](https://datatracker.ietf.org/doc/html/rfc5861)
+compliant HTTP private cache (with limitations, see below).
 
 What it does NOT implement yet:
 
@@ -24,9 +28,14 @@ What it does NOT implement yet:
 
 HTTP cache limitations:
 
-- [Content negociation fields](https://www.rfc-editor.org/rfc/rfc9110.html#name-content-negotiation-fields) are not supported for cache entry selection of Vary-ing response (meaning that if multiple cached entries are available for a given resource, cache will make a conditional request to the server to disambiguate which one should be returned),
-- Caching of responses with [partial content](https://datatracker.ietf.org/doc/html/rfc7233#section-4.1) is not supported.
-- Caching of [POST](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.3) responses is disabled.
+- [Content negociation fields](https://www.rfc-editor.org/rfc/rfc9110.html#name-content-negotiation-fields)
+are not supported for cache entry selection of Vary-ing response (meaning that
+if multiple cached entries are available for a given resource, cache will make a
+conditional request to the server to disambiguate which one should be returned),
+- Caching of responses with [partial content](https://datatracker.ietf.org/doc/html/rfc7233#section-4.1)
+is not supported.
+- Caching of [POST](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.3)
+responses is disabled.
 
 ## Usage
 
@@ -97,7 +106,9 @@ client.cacheStores.add(store);
 
 ### Cache Policy
 
-When making a request, you can policy the cache to act in a different way that it is supposed to using the `cachePolicy` property argument of the `HttpxClient.createRequest` method.
+When making a request, you can policy the cache to act in a different way that
+it is supposed to using the `cachePolicy` property argument of the
+`HttpxClient.createRequest` method.
 
 ```dart
 const client = HttpxClient();
@@ -110,17 +121,20 @@ final request = client.createRequest(
 
 #### Policies
 
+<!-- markdownlint-disable MD013 -->
 | CachePolicy | Description |
 |---|---|
 | `standard` (default) | Standard behaviour. |
 | `straightToNetwork` | Behaves as if there is no HTTP cache for the request. It will still update the cache with the response. |
 | `ignoreDirectives` | Uses any response in the HTTP cache matching the request, not paying attention to `Pragma` / `Cache Control` directives in both the request and the cached response(s). |
 | `staleWhileRevalidate` | Enable [stale-while-revalidate](https://datatracker.ietf.org/doc/html/rfc5861#section-3) even for cached responses which do not have the directive (or if it's past its lifetime). It does not bypass `Pragma` / `Cache-Control` directives (`no-cache` and/or `min-fresh` directives may prevent revalidation in background). |
+<!-- markdownlint-enable MD013 -->
 
 #### Cache directives
 
-You can also control the cache using the `Pragma` / `Cache-Control` directives in the request :
+You can also control the cache using the `Pragma` / `Cache-Control` directives
+in the request :
+
 - [Force revalidation (MDN)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching#force_revalidation)
 - [Don't cache response (MDN)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching#dont_cache)
 - [Provide up-to-date content everytime (MDN)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching#provide_up-to-date_content_every_time)
-

@@ -1,3 +1,5 @@
+# Changelog
+
 ## 0.2.0
 
 - Upgrade freezed/freezed_annotation packages
