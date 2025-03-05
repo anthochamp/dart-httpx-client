@@ -34,12 +34,13 @@ class HttpxCacheStoreCombined implements HttpxCacheStore {
     required HttpxCacheStorePk primaryKey,
     HttpxHeadersEntries? requestHeadersFilter,
     HttpxHeadersEntries? responseHeadersFilter,
-  }) =>
-      Future.wait(stores.map(
-        (e) async => await e.removeWhere(
-          primaryKey: primaryKey,
-          requestHeadersFilter: requestHeadersFilter,
-          responseHeadersFilter: responseHeadersFilter,
-        ),
-      ));
+  }) => Future.wait(
+    stores.map(
+      (e) async => await e.removeWhere(
+        primaryKey: primaryKey,
+        requestHeadersFilter: requestHeadersFilter,
+        responseHeadersFilter: responseHeadersFilter,
+      ),
+    ),
+  );
 }

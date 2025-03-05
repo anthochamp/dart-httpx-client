@@ -13,10 +13,7 @@ class HttpxCacheMemoryStore implements HttpxCacheStore {
   /// use "curl -i [url]"
   final Iterable<List<int>> Function(Uri uri)? onGetCurlData;
 
-  HttpxCacheMemoryStore({
-    this.backupOnly = false,
-    this.onGetCurlData,
-  });
+  HttpxCacheMemoryStore({this.backupOnly = false, this.onGetCurlData});
 
   final _cache = <Uri, List<HttpxCacheStoreEntry>>{};
 

@@ -43,7 +43,8 @@ class HttpxViaIntermediate {
 extension HttpxHeadersViaExtension on HttpxHeaders {
   // https://httpwg.org/specs/rfc9110.html#field.via
   Iterable<HttpxViaIntermediate>? getVia() {
-    return this[HttpHeaders.viaHeader]
-        ?.map(HttpxViaIntermediate.fromHeaderValue);
+    return this[HttpHeaders.viaHeader]?.map(
+      HttpxViaIntermediate.fromHeaderValue,
+    );
   }
 }

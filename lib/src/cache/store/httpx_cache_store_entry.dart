@@ -49,18 +49,17 @@ class HttpxCacheStoreEntry {
     required DateTime firstByteSentTime,
     required HttpxResponse response,
     required List<int>? responseBody,
-  }) =>
-      HttpxCacheStoreEntry(
-        firstByteSentTime: firstByteSentTime,
-        uri: uri,
-        requestHeaders: requestHeaders.clone(),
-        firstByteReceivedTime: response.firstByteReceivedTime,
-        redirects: [...response.redirects],
-        status: response.status,
-        statusText: response.statusText,
-        responseHeaders: response.headers.clone(),
-        responseBody: responseBody,
-      );
+  }) => HttpxCacheStoreEntry(
+    firstByteSentTime: firstByteSentTime,
+    uri: uri,
+    requestHeaders: requestHeaders.clone(),
+    firstByteReceivedTime: response.firstByteReceivedTime,
+    redirects: [...response.redirects],
+    status: response.status,
+    statusText: response.statusText,
+    responseHeaders: response.headers.clone(),
+    responseBody: responseBody,
+  );
 
   HttpxCacheStoreEntry clone() => HttpxCacheStoreEntry.from(this);
 }

@@ -41,19 +41,20 @@ class HttpxResponseImpl extends Stream<List<int>> implements HttpxResponse {
       onDone: () {
         unawaited(_streamController.close());
 
-        unawaited(_cacheStreamController.stream.fold(
-          <int>[],
-          (previous, element) => previous..addAll(element),
-        ).then((body) async {
-          await cache.target?.update(
-            method: method,
-            uri: uri,
-            requestHeaders: requestHeaders,
-            firstByteSentTime: firstByteSentTime,
-            response: response,
-            responseBody: body,
-          );
-        }));
+        unawaited(
+          _cacheStreamController.stream
+              .fold(<int>[], (previous, element) => previous..addAll(element))
+              .then((body) async {
+                await cache.target?.update(
+                  method: method,
+                  uri: uri,
+                  requestHeaders: requestHeaders,
+                  firstByteSentTime: firstByteSentTime,
+                  response: response,
+                  responseBody: body,
+                );
+              }),
+        );
 
         unawaited(_cacheStreamController.close());
       },
@@ -85,13 +86,12 @@ class HttpxResponseImpl extends Stream<List<int>> implements HttpxResponse {
     Function? onError,
     void Function()? onDone,
     bool? cancelOnError,
-  }) =>
-      _streamController.stream.listen(
-        onData,
-        onError: onError,
-        onDone: onDone,
-        cancelOnError: cancelOnError,
-      );
+  }) => _streamController.stream.listen(
+    onData,
+    onError: onError,
+    onDone: onDone,
+    cancelOnError: cancelOnError,
+  );
 
   @override
   FutureOr<void> dispose() async {

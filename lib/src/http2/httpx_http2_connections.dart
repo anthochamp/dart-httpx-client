@@ -30,10 +30,7 @@ class _Connection {
 
   void startIdleTimeoutTimer(Duration? idleTimeout) {
     if (_timer == null && idleTimeout != null) {
-      _timer = Timer(
-        idleTimeout,
-        () => onIdleTimeout(this),
-      );
+      _timer = Timer(idleTimeout, () => onIdleTimeout(this));
     }
   }
 
@@ -70,53 +67,50 @@ class HttpxHttp2Connections {
       settings: clientSettings,
     );
 
-    http2Transport.onActiveStateChanged = (isActive) => _onActiveStateChanged(
-          http2Transport,
-          isActive,
+    http2Transport.onActiveStateChanged =
+        (isActive) => _onActiveStateChanged(http2Transport, isActive);
+
+    return _connectionsRwMutex.protectWrite<ClientTransportConnection>(
+      () async {
+        final connection = _Connection(
+          host: host,
+          port: port,
+          transport: http2Transport,
+          onIdleTimeout: (connection) => _onConnectionIdleTimeout,
         );
 
-    return _connectionsRwMutex
-        .protectWrite<ClientTransportConnection>(() async {
-      final connection = _Connection(
-        host: host,
-        port: port,
-        transport: http2Transport,
-        onIdleTimeout: (connection) => _onConnectionIdleTimeout,
-      );
+        connection.startIdleTimeoutTimer(connectionIdleTimeout);
 
-      connection.startIdleTimeoutTimer(connectionIdleTimeout);
+        _connections.add(connection);
 
-      _connections.add(connection);
-
-      return http2Transport;
-    });
+        return http2Transport;
+      },
+    );
   }
 
   Future<ClientTransportConnection?> find(
     String host,
     int port,
-  ) =>
-      _connectionsRwMutex.protectRead<ClientTransportConnection?>(() async {
-        return _connections
-            .firstWhereOrNull(
-              (element) =>
-                  element.isValid() &&
-                  element.host == host &&
-                  element.port == port,
-            )
-            ?.transport;
-      });
+  ) => _connectionsRwMutex.protectRead<ClientTransportConnection?>(() async {
+    return _connections
+        .firstWhereOrNull(
+          (element) =>
+              element.isValid() && element.host == host && element.port == port,
+        )
+        ?.transport;
+  });
 
   Future<void> _onActiveStateChanged(
     ClientTransportConnection transport,
     bool isActive,
   ) async {
-    final connection =
-        await _connectionsRwMutex.protectRead<_Connection?>(() async {
-      return _connections.firstWhereOrNull(
-        (element) => element.transport == transport,
-      );
-    });
+    final connection = await _connectionsRwMutex.protectRead<_Connection?>(
+      () async {
+        return _connections.firstWhereOrNull(
+          (element) => element.transport == transport,
+        );
+      },
+    );
 
     if (connection != null) {
       if (!isActive) {
@@ -143,8 +137,9 @@ class HttpxHttp2Connections {
     );
 
     await _connectionsRwMutex.protectWrite<void>(() {
-      _connections
-          .removeWhere((element) => element.transport == connection.transport);
+      _connections.removeWhere(
+        (element) => element.transport == connection.transport,
+      );
 
       return Future.value();
     });

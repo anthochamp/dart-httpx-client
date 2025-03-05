@@ -24,7 +24,9 @@ class HttpxHeaderValueParser {
   static const httpFieldValuePattern = '$httpFieldContentPattern+';
 
   // https://httpwg.org/specs/rfc9110.html#rfc.section.5.6.2
-  static const httpTcharPattern = r'[!#$%&' '*+-.^_`|~0-9a-zA-Z]';
+  static const httpTcharPattern =
+      r'[!#$%&'
+      '*+-.^_`|~0-9a-zA-Z]';
   static const httpTokenPattern = '$httpTcharPattern+';
   static const httpDelimitersPattern = r'[(),/:;<=>?@\[\]{}]\\"]';
 
@@ -38,12 +40,11 @@ class HttpxHeaderValueParser {
   static String composeHttpQuotedPairPattern({
     String? outName,
     String? inName,
-  }) =>
-      '(?:[ \\t]|$httpVcharPattern|$httpObsTextPattern)'.inoutCapture(
-        prePattern: r'\\',
-        inCaptureName: inName,
-        outCaptureName: outName,
-      );
+  }) => '(?:[ \\t]|$httpVcharPattern|$httpObsTextPattern)'.inoutCapture(
+    prePattern: r'\\',
+    inCaptureName: inName,
+    outCaptureName: outName,
+  );
   static String composeHttpQuotedStringPattern({
     String? outName,
     String? inName,
@@ -87,9 +88,8 @@ class HttpxHeaderValueParser {
   static String composeHttpPossibleCommentPattern({
     String? outName,
     String? inName,
-  }) =>
-      '(?:$httpCtextPattern|${composeHttpQuotedPairPattern()}|\\(.*\\))*'
-          .inoutCapture(
+  }) => '(?:$httpCtextPattern|${composeHttpQuotedPairPattern()}|\\(.*\\))*'
+      .inoutCapture(
         prePattern: r'\(',
         postPattern: r'\)',
         inCaptureName: inName,
@@ -103,21 +103,23 @@ class HttpxHeaderValueParser {
   }) =>
       '(?:$httpCtextPattern|${composeHttpQuotedPairPattern()}|${composeHttpPossibleCommentPattern(outName: possibleSubCommentOutName)})*'
           .inoutCapture(
-        prePattern: r'\(',
-        postPattern: r'\)',
-        inCaptureName: inName,
-        outCaptureName: outName,
-      );
+            prePattern: r'\(',
+            postPattern: r'\)',
+            inCaptureName: inName,
+            outCaptureName: outName,
+          );
 
   static List<String> splitByWs(HttpxHeaderValue value) =>
       value.split(RegExp(httpOWsPattern));
 
   static String? parseHttpComment(String value) {
     // can't use a simple regex to decode comment because it's a recursive pattern
-    final match = RegExp(composeHttpCommentPattern(
-      inName: 'comment',
-      possibleSubCommentOutName: 'possibleSubComment',
-    )).firstMatch(value);
+    final match = RegExp(
+      composeHttpCommentPattern(
+        inName: 'comment',
+        possibleSubCommentOutName: 'possibleSubComment',
+      ),
+    ).firstMatch(value);
 
     if (match == null) {
       return null;
@@ -137,8 +139,9 @@ class HttpxHeaderValueParser {
   }
 
   static String? parseQuotedString(String value) {
-    final match = RegExp(composeHttpQuotedStringPattern(inName: 'quotedString'))
-        .firstMatch(value);
+    final match = RegExp(
+      composeHttpQuotedStringPattern(inName: 'quotedString'),
+    ).firstMatch(value);
 
     if (match == null) {
       return null;
@@ -165,10 +168,12 @@ class HttpxHeaderValueParser {
       final separator = separators.elementAt(index);
 
       // ignore: avoid-substring
-      values.add(value.substring(
-        index == 0 ? 0 : separators.elementAt(index - 1).end,
-        separator.end - 1,
-      ));
+      values.add(
+        value.substring(
+          index == 0 ? 0 : separators.elementAt(index - 1).end,
+          separator.end - 1,
+        ),
+      );
     }
 
     return values
@@ -178,10 +183,7 @@ class HttpxHeaderValueParser {
   }
 
   // https://httpwg.org/specs/rfc9110.html#rfc.section.5.3
-  static String httpList(
-    Iterable<String> values, {
-    String spacing = ' ',
-  }) {
+  static String httpList(Iterable<String> values, {String spacing = ' '}) {
     assert(HttpxHeaderValueParser.httpOWsPattern.entireMatch(spacing));
 
     return values.join(',$spacing');

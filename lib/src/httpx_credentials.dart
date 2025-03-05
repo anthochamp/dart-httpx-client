@@ -7,7 +7,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'httpx_credentials.freezed.dart';
 
 @freezed
-class HttpxCredentials with _$HttpxCredentials {
+sealed class HttpxCredentials with _$HttpxCredentials {
   // https://www.rfc-editor.org/rfc/rfc7617
   const factory HttpxCredentials.basic({
     required String realm,

@@ -45,33 +45,32 @@ class HttpxHttp2PushStream extends Stream<HttpxPushMessage>
     Function? onError,
     void Function()? onDone,
     bool? cancelOnError,
-  }) =>
-      _streamController.stream.listen(
-        onData,
-        onError: onError,
-        onDone: onDone,
-        cancelOnError: cancelOnError,
-      );
+  }) => _streamController.stream.listen(
+    onData,
+    onError: onError,
+    onDone: onDone,
+    cancelOnError: cancelOnError,
+  );
 
   @override
   void open() => _openMemoizer.runOnce(() {
-        final transportStream = _transport.makeRequest(
-          HttpxHttp2Utilities.http2HeadersEncode(
-            method: method,
-            uri: uri,
-            headers: headers,
-          ),
-          endStream: true,
-        );
+    final transportStream = _transport.makeRequest(
+      HttpxHttp2Utilities.http2HeadersEncode(
+        method: method,
+        uri: uri,
+        headers: headers,
+      ),
+      endStream: true,
+    );
 
-        /*
+    /*
         transportStream.peerPushes.listen(
           (push) => _streamController.add(HttpxHttp2PushMessage(push)),
         );
         */
 
-        return transportStream;
-      });
+    return transportStream;
+  });
 
   @override
   void close() {

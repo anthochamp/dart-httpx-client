@@ -54,14 +54,14 @@ class HttpxCacheUtilities {
     preferredEntries = preferredEntries.where((element) {
       final elementVaryingHeadersEntries =
           HttpxCacheUtilities.composeVaryingRequestHeadersEntries(
-        requestHeaders: element.requestHeaders,
-        responseHeaders: element.responseHeaders,
-      );
+            requestHeaders: element.requestHeaders,
+            responseHeaders: element.responseHeaders,
+          );
       final incomingVaryingHeadersEntries =
           HttpxCacheUtilities.composeVaryingRequestHeadersEntries(
-        requestHeaders: requestHeaders,
-        responseHeaders: element.responseHeaders,
-      );
+            requestHeaders: requestHeaders,
+            responseHeaders: element.responseHeaders,
+          );
 
       if (elementVaryingHeadersEntries == null ||
           incomingVaryingHeadersEntries == null) {
@@ -80,14 +80,15 @@ class HttpxCacheUtilities {
     if (preferredEntries.isNotEmpty) {
       final nullDate = DateTime.fromMillisecondsSinceEpoch(0, isUtc: true);
 
-      preferredEntries = preferredEntries.toList()
-        ..sort((a, b) {
-          final dateA = a.responseHeaders.getDate() ?? nullDate;
-          final dateB = b.responseHeaders.getDate() ?? nullDate;
+      preferredEntries =
+          preferredEntries.toList()
+            ..sort((a, b) {
+              final dateA = a.responseHeaders.getDate() ?? nullDate;
+              final dateB = b.responseHeaders.getDate() ?? nullDate;
 
-          return dateA.compareTo(dateB);
-        })
-        ..reversed;
+              return dateA.compareTo(dateB);
+            })
+            ..reversed;
 
       final mostRecentEntryDate =
           preferredEntries.first.responseHeaders.getDate() ?? nullDate;
@@ -104,8 +105,7 @@ class HttpxCacheUtilities {
   static DateTime composeGeneratedAt({
     required HttpxHeaders responseHeaders,
     required DateTime firstByteReceivedTime,
-  }) =>
-      responseHeaders.getDate() ?? firstByteReceivedTime;
+  }) => responseHeaders.getDate() ?? firstByteReceivedTime;
 
   // https://datatracker.ietf.org/doc/html/rfc7234#section-4.2.1
   static Duration? computeFreshnessLifetime({
@@ -174,12 +174,13 @@ class HttpxCacheUtilities {
 
     final correctedAgeValue = ageValue + responseDelay;
 
-    final hasHttp1_0 = responseHeaders.getVia()?.any(
-              (element) =>
-                  (element.protocolName == null ||
-                      element.protocolName!.toUpperCase() == 'HTTP') &&
-                  element.protocolVersion == '1.0',
-            ) ??
+    final hasHttp1_0 =
+        responseHeaders.getVia()?.any(
+          (element) =>
+              (element.protocolName == null ||
+                  element.protocolName!.toUpperCase() == 'HTTP') &&
+              element.protocolVersion == '1.0',
+        ) ??
         false;
 
     int correctedInitialAge;
@@ -189,8 +190,10 @@ class HttpxCacheUtilities {
         firstByteReceivedTime: firstByteReceivedTime,
       );
 
-      final apparentAge =
-          max(0, firstByteReceivedTime.difference(dateValue).inSeconds);
+      final apparentAge = max(
+        0,
+        firstByteReceivedTime.difference(dateValue).inSeconds,
+      );
 
       correctedInitialAge = max(apparentAge, correctedAgeValue);
     } else {
@@ -242,8 +245,7 @@ class HttpxCacheUtilities {
   static Duration? computeFreshness({
     required Duration? freshnessLifetime,
     required Duration currentAge,
-  }) =>
-      DurationUtil.substract(freshnessLifetime, currentAge);
+  }) => DurationUtil.substract(freshnessLifetime, currentAge);
 
   static bool computeIsStale({
     required Duration currentAge,

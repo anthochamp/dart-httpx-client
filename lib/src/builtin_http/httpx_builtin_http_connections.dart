@@ -43,19 +43,6 @@ class _PendingSocket {
   }
 }
 
-class _ConnectionTask implements ConnectionTask<Socket> {
-  @override
-  final Future<Socket> socket;
-
-  _ConnectionTask(Future<Socket> socketFuture) : socket = socketFuture;
-
-  @override
-  // ignore: no-empty-block
-  void cancel() {
-    // does nothing
-  }
-}
-
 class HttpxBuiltinHttpConnections {
   static const alpnProtocols = ['http/1.0', 'http/1.1'];
 
@@ -99,14 +86,11 @@ class HttpxBuiltinHttpConnections {
         alpnProtocols: alpnProtocols,
       );
     } else {
-      return _ConnectionTask(Future.value(socket));
+      return ConnectionTask.fromSocket(Future.value(socket), () {});
     }
   }
 
-  Future<void> addPendingSocket(
-    Socket socket, {
-    required String host,
-  }) =>
+  Future<void> addPendingSocket(Socket socket, {required String host}) =>
       _pendingSocketsMutex.protect<void>(() {
         final pendingSocket = _PendingSocket(
           host: host,

@@ -83,13 +83,13 @@ class HttpxCacheContext {
 
     final staleWhileRevalidateLifetime =
         HttpxCacheUtilities.computeStaleWhileRevalidateLifetime(
-      responseCacheControl: responseCacheControl,
-    );
+          responseCacheControl: responseCacheControl,
+        );
     final staleIfErrorLifetime =
         HttpxCacheUtilities.computeStaleIfErrorLifetime(
-      requestCacheControl: requestCacheControl,
-      responseCacheControl: responseCacheControl,
-    );
+          requestCacheControl: requestCacheControl,
+          responseCacheControl: responseCacheControl,
+        );
 
     final staleWhileRevalidateTimeout = HttpxCacheUtilities.computeFreshness(
       freshnessLifetime: staleWhileRevalidateLifetime,
@@ -137,10 +137,14 @@ class HttpxCacheContext {
         requestCacheControl: requestCacheControl,
         freshness: freshnessTimeout,
       ),
-      isStaleWhileRevalidateAllowed:
-          DurationUtil.gt(staleWhileRevalidateTimeout, Duration.zero),
-      isStaleIfErrorAllowed:
-          DurationUtil.gt(staleIfErrorTimeout, Duration.zero),
+      isStaleWhileRevalidateAllowed: DurationUtil.gt(
+        staleWhileRevalidateTimeout,
+        Duration.zero,
+      ),
+      isStaleIfErrorAllowed: DurationUtil.gt(
+        staleIfErrorTimeout,
+        Duration.zero,
+      ),
     );
   }
 

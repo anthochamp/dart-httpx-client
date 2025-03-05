@@ -34,9 +34,7 @@ class HttpxHttp2Response extends Stream<List<int>> implements HttpxResponse {
       onDone: () {
         unawaited(_dataStreamController.close());
 
-        logCallback?.call(
-          '[$method $uri] HTTP2 response reception completed.',
-        );
+        logCallback?.call('[$method $uri] HTTP2 response reception completed.');
       },
       cancelOnError: false,
     );
@@ -70,13 +68,12 @@ class HttpxHttp2Response extends Stream<List<int>> implements HttpxResponse {
     Function? onError,
     void Function()? onDone,
     bool? cancelOnError,
-  }) =>
-      _streamController.stream.listen(
-        onData,
-        onError: onError,
-        onDone: onDone,
-        cancelOnError: cancelOnError,
-      );
+  }) => _streamController.stream.listen(
+    onData,
+    onError: onError,
+    onDone: onDone,
+    cancelOnError: cancelOnError,
+  );
 
   @override
   Future<void> dispose() async {
@@ -92,9 +89,7 @@ class HttpxHttp2Response extends Stream<List<int>> implements HttpxResponse {
       String? status = decodedHeaders.remove(':status');
 
       if (status != null) {
-        logCallback?.call(
-          '[$method $uri] Received status: $status',
-        );
+        logCallback?.call('[$method $uri] Received status: $status');
 
         _status = int.tryParse(status);
       }
@@ -103,14 +98,14 @@ class HttpxHttp2Response extends Stream<List<int>> implements HttpxResponse {
         _headers.add(entry.key, entry.value);
       }
 
-      logCallback?.call(
-        '[$method $uri] Headers updated: $_headers',
-      );
+      logCallback?.call('[$method $uri] Headers updated: $_headers');
 
       if (_status == null) {
-        _readyCompleter.completeError(Exception(
-          'HTTP2 headers message did not contain :status field (or invalid)',
-        ));
+        _readyCompleter.completeError(
+          Exception(
+            'HTTP2 headers message did not contain :status field (or invalid)',
+          ),
+        );
       } else {
         _readyCompleter.complete();
       }
@@ -127,9 +122,9 @@ class HttpxHttp2Response extends Stream<List<int>> implements HttpxResponse {
             break;
 
           default:
-            _streamController.addError(Exception(
-              'Content encoding "$contentEncoding" is not supported',
-            ));
+            _streamController.addError(
+              Exception('Content encoding "$contentEncoding" is not supported'),
+            );
             break;
         }
       }
@@ -145,9 +140,9 @@ class HttpxHttp2Response extends Stream<List<int>> implements HttpxResponse {
       });
     } else if (message is DataStreamMessage) {
       if (!_readyCompleter.isCompleted) {
-        _readyCompleter.completeError(Exception(
-          'HTTP2 data message received before headers',
-        ));
+        _readyCompleter.completeError(
+          Exception('HTTP2 data message received before headers'),
+        );
       }
 
       logCallback?.call(

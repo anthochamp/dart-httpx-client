@@ -134,13 +134,9 @@ class HttpxClientImpl implements HttpxClient {
     HttpxCachePolicy? cachePolicy,
     Duration? connectionTimeout,
   }) {
-    logCallback?.call('$method request to $uri... ${{
-      'headers': headers,
-      'realmsCredentials': realmsCredentials != null,
-      'maxRedirects': maxRedirects,
-      'cachePolicy': cachePolicy,
-      'connectionTimeout': connectionTimeout,
-    }.inspect()}');
+    logCallback?.call(
+      '$method request to $uri... ${{'headers': headers, 'realmsCredentials': realmsCredentials != null, 'maxRedirects': maxRedirects, 'cachePolicy': cachePolicy, 'connectionTimeout': connectionTimeout}.inspect()}',
+    );
 
     return HttpxRequestImpl(
       method: method,
@@ -229,12 +225,17 @@ class HttpxClientImpl implements HttpxClient {
       result.removeAll(HttpHeaders.authorizationHeader);
 
       for (final realmCredentials in realmsCredentials) {
-        final authorizationHeaderName = realmCredentials.proxyCredentials
-            ? HttpHeaders.proxyAuthorizationHeader
-            : HttpHeaders.authorizationHeader;
+        final authorizationHeaderName =
+            realmCredentials.proxyCredentials
+                ? HttpHeaders.proxyAuthorizationHeader
+                : HttpHeaders.authorizationHeader;
 
-        realmCredentials.when(
-          basic: (realm, username, password, proxyCredentials) {
+        switch (realmCredentials) {
+          case HttpxCredentialsBasic(
+            :final realm,
+            :final username,
+            :final password,
+          ):
             result.add(
               authorizationHeaderName,
               HeaderValue(
@@ -245,16 +246,17 @@ class HttpxClientImpl implements HttpxClient {
                 },
               ).toString(),
             );
-          },
-          bearer: (realm, accessToken, proxyCredentials) {
+            break;
+
+          case HttpxCredentialsBearer(:final realm, :final accessToken):
             result.add(
               authorizationHeaderName,
               HeaderValue('Bearer $accessToken', {
                 if (realm != null) 'realm': realm,
               }).toString(),
             );
-          },
-        );
+            break;
+        }
       }
     }
 
@@ -293,19 +295,24 @@ class HttpxClientImpl implements HttpxClient {
         if (connectionTimeout == null) {
           secureSocket = await (await task).socket as SecureSocket;
         } else {
-          secureSocket = await task.timeout(
-            connectionTimeout,
-            onTimeout: () => throw Exception(
-              'Timed-out while trying to connect to "$host:$port" (unsecure)',
-            ),
-          ) as SecureSocket;
+          secureSocket =
+              await task.timeout(
+                    connectionTimeout,
+                    onTimeout:
+                        () =>
+                            throw Exception(
+                              'Timed-out while trying to connect to "$host:$port" (unsecure)',
+                            ),
+                  )
+                  as SecureSocket;
         }
 
         _knownEndpointAlpnProtocol[hostPort] =
             secureSocket.selectedProtocol ?? '';
 
-        if (HttpxHttp2Connections.alpnProtocols
-            .contains(secureSocket.selectedProtocol)) {
+        if (HttpxHttp2Connections.alpnProtocols.contains(
+          secureSocket.selectedProtocol,
+        )) {
           http2Transport = await _http2Connections.add(
             secureSocket,
             host: host,
@@ -336,10 +343,9 @@ class HttpxClientImpl implements HttpxClient {
     required bool secure,
     Iterable<String>? alpnProtocols,
   }) async {
-    logCallback?.call('Connecting to $host:$port... ${{
-      'secure': secure,
-      'alpnProtocols': alpnProtocols,
-    }.inspect()}');
+    logCallback?.call(
+      'Connecting to $host:$port... ${{'secure': secure, 'alpnProtocols': alpnProtocols}.inspect()}',
+    );
 
     if (secure) {
       return SecureSocket.startConnect(
@@ -347,8 +353,10 @@ class HttpxClientImpl implements HttpxClient {
         port,
         supportedProtocols: alpnProtocols?.toList() ?? [],
         context: securityContext,
-        onBadCertificate: (x509Certificate) =>
-            badCertificateCallback?.call(x509Certificate, host, port) ?? false,
+        onBadCertificate:
+            (x509Certificate) =>
+                badCertificateCallback?.call(x509Certificate, host, port) ??
+                false,
       );
     } else {
       return Socket.startConnect(host, port);
@@ -362,11 +370,9 @@ class HttpxClientImpl implements HttpxClient {
     required int maxRedirects,
     required Duration? connectionTimeout,
   }) async {
-    logCallback?.call('$method network request to $uri... ${{
-      'headers': headers,
-      'maxRedirects': maxRedirects,
-      'connectionTimeout': connectionTimeout,
-    }.inspect()}');
+    logCallback?.call(
+      '$method network request to $uri... ${{'headers': headers, 'maxRedirects': maxRedirects, 'connectionTimeout': connectionTimeout}.inspect()}',
+    );
 
     final http2Transport = await _getHttp2Transport(
       host: uri.host,
