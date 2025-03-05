@@ -230,8 +230,12 @@ class HttpxClientImpl implements HttpxClient {
                 ? HttpHeaders.proxyAuthorizationHeader
                 : HttpHeaders.authorizationHeader;
 
-        realmCredentials.when(
-          basic: (realm, username, password, proxyCredentials) {
+        switch (realmCredentials) {
+          case HttpxCredentialsBasic(
+            :final realm,
+            :final username,
+            :final password,
+          ):
             result.add(
               authorizationHeaderName,
               HeaderValue(
@@ -242,16 +246,17 @@ class HttpxClientImpl implements HttpxClient {
                 },
               ).toString(),
             );
-          },
-          bearer: (realm, accessToken, proxyCredentials) {
+            break;
+
+          case HttpxCredentialsBearer(:final realm, :final accessToken):
             result.add(
               authorizationHeaderName,
               HeaderValue('Bearer $accessToken', {
                 if (realm != null) 'realm': realm,
               }).toString(),
             );
-          },
-        );
+            break;
+        }
       }
     }
 
