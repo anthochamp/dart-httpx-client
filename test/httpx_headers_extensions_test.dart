@@ -12,15 +12,9 @@ void main() {
       final cacheControl = headers.getCacheControl();
       expect(cacheControl, isNotNull);
 
-      expect(
-        cacheControl!.mustRevalidate,
-        equals(true),
-      );
+      expect(cacheControl!.mustRevalidate, equals(true));
 
-      expect(
-        cacheControl.maxAgeValue,
-        equals(const Duration(seconds: 604800)),
-      );
+      expect(cacheControl.maxAgeValue, equals(const Duration(seconds: 604800)));
     });
 
     test('', () {

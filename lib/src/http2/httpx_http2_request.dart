@@ -118,20 +118,21 @@ class HttpxHttp2Request implements HttpxRequest {
   }
 
   ClientTransportStream _open() => _openMemoizer.runOnce(() {
-        logCallback?.call('[$method $uri] Opening request...');
+    logCallback?.call('[$method $uri] Opening request...');
 
-        final transportStream =
-            _transport.makeRequest(HttpxHttp2Utilities.http2HeadersEncode(
-          method: method,
-          uri: uri,
-          headers: headers,
-        ));
+    final transportStream = _transport.makeRequest(
+      HttpxHttp2Utilities.http2HeadersEncode(
+        method: method,
+        uri: uri,
+        headers: headers,
+      ),
+    );
 
-        _firstByteSentTime = DateTime.now();
-        headers.lock();
+    _firstByteSentTime = DateTime.now();
+    headers.lock();
 
-        logCallback?.call('[$method $uri] Request opened.');
+    logCallback?.call('[$method $uri] Request opened.');
 
-        return transportStream;
-      });
+    return transportStream;
+  });
 }

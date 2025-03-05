@@ -103,10 +103,7 @@ class HttpxBuiltinHttpConnections {
     }
   }
 
-  Future<void> addPendingSocket(
-    Socket socket, {
-    required String host,
-  }) =>
+  Future<void> addPendingSocket(Socket socket, {required String host}) =>
       _pendingSocketsMutex.protect<void>(() {
         final pendingSocket = _PendingSocket(
           host: host,

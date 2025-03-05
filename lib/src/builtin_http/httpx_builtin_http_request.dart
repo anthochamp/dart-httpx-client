@@ -91,50 +91,50 @@ class HttpxBuiltinHttpRequest implements HttpxRequest {
   }
 
   @override
-  Future<HttpxResponse> close([Duration? timeout]) =>
-      _closeMemoizer.runOnce(() async {
-        return _open().then((httpClientRequest) async {
-          logCallback?.call('[$method $uri] Closing request...');
+  Future<HttpxResponse> close([Duration? timeout]) => _closeMemoizer.runOnce(
+    () async {
+      return _open().then((httpClientRequest) async {
+        logCallback?.call('[$method $uri] Closing request...');
 
-          _firstByteSentTime ??= DateTime.now();
+        _firstByteSentTime ??= DateTime.now();
 
-          var httpClientResponseFuture = httpClientRequest.close();
+        var httpClientResponseFuture = httpClientRequest.close();
 
-          if (timeout != null) {
-            httpClientResponseFuture =
-                httpClientResponseFuture.timeout(timeout);
-          }
+        if (timeout != null) {
+          httpClientResponseFuture = httpClientResponseFuture.timeout(timeout);
+        }
 
-          final httpClientResponse = await httpClientResponseFuture;
+        final httpClientResponse = await httpClientResponseFuture;
 
-          logCallback?.call('[$method $uri] Request closed.');
+        logCallback?.call('[$method $uri] Request closed.');
 
-          return HttpxBuiltinHttpResponse(
-            httpClientResponse,
-            method: method,
-            uri: uri,
-            firstByteReceivedTime: DateTime.now(),
-            logCallback: logCallback,
-          );
-        });
+        return HttpxBuiltinHttpResponse(
+          httpClientResponse,
+          method: method,
+          uri: uri,
+          firstByteReceivedTime: DateTime.now(),
+          logCallback: logCallback,
+        );
       });
+    },
+  );
 
   Future<HttpClientRequest> _open() => _openMemoizer.runOnce(() async {
-        logCallback?.call('[$method $uri] Opening request...');
+    logCallback?.call('[$method $uri] Opening request...');
 
-        final httpClientRequest = await _httpClient.openUrl(method, uri);
+    final httpClientRequest = await _httpClient.openUrl(method, uri);
 
-        httpClientRequest.maxRedirects = maxRedirects;
-        httpClientRequest.followRedirects = maxRedirects != 0;
-        httpClientRequest.persistentConnection = persistantConnection;
+    httpClientRequest.maxRedirects = maxRedirects;
+    httpClientRequest.followRedirects = maxRedirects != 0;
+    httpClientRequest.persistentConnection = persistantConnection;
 
-        headers.mutateHttpHeaders(httpClientRequest.headers, clear: true);
+    headers.mutateHttpHeaders(httpClientRequest.headers, clear: true);
 
-        headers = HttpxHeaders.fromHttpHeaders(httpClientRequest.headers);
-        headers.lock();
+    headers = HttpxHeaders.fromHttpHeaders(httpClientRequest.headers);
+    headers.lock();
 
-        logCallback?.call('[$method $uri] Request opened.');
+    logCallback?.call('[$method $uri] Request opened.');
 
-        return httpClientRequest;
-      });
+    return httpClientRequest;
+  });
 }

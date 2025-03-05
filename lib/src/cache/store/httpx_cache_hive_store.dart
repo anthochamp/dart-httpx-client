@@ -19,10 +19,7 @@ class _HiveRecord {
 
   final List<HttpxCacheStoreEntry> entries;
 
-  _HiveRecord({
-    required this.primaryKey,
-    required this.entries,
-  });
+  _HiveRecord({required this.primaryKey, required this.entries});
 }
 
 class _TypeAdapterRecord extends TypeAdapter<_HiveRecord> {
@@ -36,10 +33,7 @@ class _TypeAdapterRecord extends TypeAdapter<_HiveRecord> {
     final primaryKey = Uri.parse(reader.readString());
     final entries = reader.readList().cast<HttpxCacheStoreEntry>();
 
-    return _HiveRecord(
-      primaryKey: primaryKey,
-      entries: entries,
-    );
+    return _HiveRecord(primaryKey: primaryKey, entries: entries);
   }
 
   @override
@@ -84,23 +78,29 @@ class _TypeAdapterStoreEntry extends TypeAdapter<HttpxCacheStoreEntry> {
 
   @override
   HttpxCacheStoreEntry read(BinaryReader reader) {
-    final firstByteSentTime =
-        DateTime.fromMicrosecondsSinceEpoch(reader.readInt(), isUtc: true);
+    final firstByteSentTime = DateTime.fromMicrosecondsSinceEpoch(
+      reader.readInt(),
+      isUtc: true,
+    );
     final uri = Uri.parse(reader.readString());
-    final requestHeaders = HttpxHeaders.fromMap(reader
-        .readMap()
-        // ignore: unnecessary_lambdas
-        .map((key, value) => MapEntry<String, String>(key, value)));
-    final firstByteReceivedTime =
-        DateTime.fromMicrosecondsSinceEpoch(reader.readInt(), isUtc: true);
+    final requestHeaders = HttpxHeaders.fromMap(
+      reader.readMap()
+      // ignore: unnecessary_lambdas
+      .map((key, value) => MapEntry<String, String>(key, value)),
+    );
+    final firstByteReceivedTime = DateTime.fromMicrosecondsSinceEpoch(
+      reader.readInt(),
+      isUtc: true,
+    );
     final redirects = reader.readList().cast<HttpxRedirectInfo>();
     final status = reader.readInt32();
     final statusTextNull = reader.readBool();
     final statusText = statusTextNull ? null : reader.readString();
-    final responseHeaders = HttpxHeaders.fromMap(reader
-        .readMap()
-        // ignore: unnecessary_lambdas
-        .map((key, value) => MapEntry<String, String>(key, value)));
+    final responseHeaders = HttpxHeaders.fromMap(
+      reader.readMap()
+      // ignore: unnecessary_lambdas
+      .map((key, value) => MapEntry<String, String>(key, value)),
+    );
     final responseBodyNull = reader.readBool();
     final responseBody = responseBodyNull ? null : reader.readIntList();
 
@@ -121,8 +121,9 @@ class _TypeAdapterStoreEntry extends TypeAdapter<HttpxCacheStoreEntry> {
   void write(BinaryWriter writer, HttpxCacheStoreEntry obj) {
     writer.writeInt(obj.firstByteSentTime.microsecondsSinceEpoch);
     writer.writeString(obj.uri.toString());
-    writer
-        .writeMap(obj.requestHeaders.getFoldedEntries(lowerCasedNames: false));
+    writer.writeMap(
+      obj.requestHeaders.getFoldedEntries(lowerCasedNames: false),
+    );
     writer.writeInt(obj.firstByteReceivedTime.microsecondsSinceEpoch);
     writer.writeList(obj.redirects.toList());
     writer.writeInt32(obj.status);
@@ -130,8 +131,9 @@ class _TypeAdapterStoreEntry extends TypeAdapter<HttpxCacheStoreEntry> {
     if (obj.statusText != null) {
       writer.writeString(obj.statusText!);
     }
-    writer
-        .writeMap(obj.responseHeaders.getFoldedEntries(lowerCasedNames: false));
+    writer.writeMap(
+      obj.responseHeaders.getFoldedEntries(lowerCasedNames: false),
+    );
     writer.writeBool(obj.responseBody == null);
     if (obj.responseBody != null) {
       writer.writeIntList(obj.responseBody!);
@@ -206,23 +208,23 @@ class HttpxCacheHiveStore implements HttpxCacheStore {
 
     final primaryKey = HttpxCacheStore.composePrimaryKey(entry.uri);
 
-    final record = await _box!.get(primaryKey.toString()) ??
-        _HiveRecord(
-          primaryKey: primaryKey,
-          entries: [],
-        );
+    final record =
+        await _box!.get(primaryKey.toString()) ??
+        _HiveRecord(primaryKey: primaryKey, entries: []);
 
-    record.entries.add(HttpxCacheStoreEntry(
-      firstByteReceivedTime: entry.firstByteReceivedTime,
-      firstByteSentTime: entry.firstByteSentTime,
-      redirects: entry.redirects,
-      requestHeaders: entry.requestHeaders,
-      responseBody: entry.responseBody,
-      responseHeaders: entry.responseHeaders,
-      status: entry.status,
-      statusText: entry.statusText,
-      uri: entry.uri,
-    ));
+    record.entries.add(
+      HttpxCacheStoreEntry(
+        firstByteReceivedTime: entry.firstByteReceivedTime,
+        firstByteSentTime: entry.firstByteSentTime,
+        redirects: entry.redirects,
+        requestHeaders: entry.requestHeaders,
+        responseBody: entry.responseBody,
+        responseHeaders: entry.responseHeaders,
+        status: entry.status,
+        statusText: entry.statusText,
+        uri: entry.uri,
+      ),
+    );
 
     await _box?.put(primaryKey.toString(), record);
   }

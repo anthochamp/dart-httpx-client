@@ -60,18 +60,13 @@ class _ConditionalRequestResult {
 class _ForwardResponseResult {
   final HttpxResponse? forwardResponse;
 
-  _ForwardResponseResult({
-    this.forwardResponse,
-  });
+  _ForwardResponseResult({this.forwardResponse});
 }
 
 class _DisambiguateResult extends _ForwardResponseResult {
   final HttpxCacheStoreEntry? storeEntry;
 
-  _DisambiguateResult({
-    super.forwardResponse,
-    this.storeEntry,
-  });
+  _DisambiguateResult({super.forwardResponse, this.storeEntry});
 }
 
 class _RevalidateResult extends _ForwardResponseResult {
@@ -141,17 +136,15 @@ class HttpxCacheImpl implements HttpxCache {
       return;
     }
 
-    logCallback?.call(
-      '[$method $uri CACHE] Update stores...',
-    );
+    logCallback?.call('[$method $uri CACHE] Update stores...');
 
     await _store.removeWhere(
       primaryKey: HttpxCacheStore.composePrimaryKey(uri),
       requestHeadersFilter:
           HttpxCacheUtilities.composeVaryingRequestHeadersEntries(
-        requestHeaders: requestHeaders,
-        responseHeaders: response.headers,
-      ),
+            requestHeaders: requestHeaders,
+            responseHeaders: response.headers,
+          ),
     );
 
     await _store.add(
@@ -164,9 +157,7 @@ class HttpxCacheImpl implements HttpxCache {
       ),
     );
 
-    logCallback?.call(
-      '[$method $uri CACHE] Stores updated.',
-    );
+    logCallback?.call('[$method $uri CACHE] Stores updated.');
   }
 
   @override
@@ -180,11 +171,7 @@ class HttpxCacheImpl implements HttpxCache {
     stopWatch.start();
 
     logCallback?.call(
-      '[${request.method} ${request.uri} CACHE] Processing... ${{
-        'cachePolicy': cachePolicy,
-        'timeout': timeout,
-        'connectionTimeout': connectionTimeout,
-      }.inspect()}',
+      '[${request.method} ${request.uri} CACHE] Processing... ${{'cachePolicy': cachePolicy, 'timeout': timeout, 'connectionTimeout': connectionTimeout}.inspect()}',
     );
 
     if (cachePolicy == HttpxCachePolicy.straightToNetwork) {
@@ -200,9 +187,10 @@ class HttpxCacheImpl implements HttpxCache {
     final hasCacheControlOnlyIfCached =
         requestCacheControl?.onlyIfCached == true;
 
-    final voidResponse = hasCacheControlOnlyIfCached
-        ? HttpxCacheResponse.gatewayTimeout()
-        : null;
+    final voidResponse =
+        hasCacheControlOnlyIfCached
+            ? HttpxCacheResponse.gatewayTimeout()
+            : null;
     final voidResponseText =
         hasCacheControlOnlyIfCached ? 'gateway timeout' : 'no response';
 
@@ -254,7 +242,8 @@ class HttpxCacheImpl implements HttpxCache {
       '[${request.method} ${request.uri} CACHE] Matched a single cached entry: $context',
     );
 
-    final shouldRevalidate = context.mustRevalidate ||
+    final shouldRevalidate =
+        context.mustRevalidate ||
         (context.isStale && !context.isStaleServeAllowed);
 
     if (shouldRevalidate && cachePolicy != HttpxCachePolicy.ignoreDirectives) {
@@ -267,7 +256,7 @@ class HttpxCacheImpl implements HttpxCache {
 
       final staleWhileRevalidate =
           cachePolicy == HttpxCachePolicy.staleWhileRevalidate ||
-              context.isStaleWhileRevalidateAllowed == true;
+          context.isStaleWhileRevalidateAllowed == true;
 
       // https://datatracker.ietf.org/doc/html/rfc5861#section-3
       if (staleWhileRevalidate && !context.mustRevalidate) {
@@ -275,30 +264,29 @@ class HttpxCacheImpl implements HttpxCache {
           '[${request.method} ${request.uri} CACHE] Serving stale while revalidating in background...',
         );
 
-        unawaited(revalidateResultFuture.then((revalidateResult) async {
-          logCallback?.call(
-            '[${request.method} ${request.uri} CACHE] Background revalidation completed ${{
-              'validationFailed': revalidateResult.validationFailed,
-              'forwardResponse': revalidateResult.forwardResponse != null,
-            }}.toLogString()',
-          );
-
-          if (revalidateResult.forwardResponse != null) {
-            final responseBody = await revalidateResult.forwardResponse!.fold(
-              <int>[],
-              (previous, element) => previous..addAll(element),
+        unawaited(
+          revalidateResultFuture.then((revalidateResult) async {
+            logCallback?.call(
+              '[${request.method} ${request.uri} CACHE] Background revalidation completed ${{'validationFailed': revalidateResult.validationFailed, 'forwardResponse': revalidateResult.forwardResponse != null}}.toLogString()',
             );
 
-            await update(
-              method: request.method,
-              uri: request.uri,
-              requestHeaders: request.headers,
-              firstByteSentTime: request.firstByteSentTime!,
-              response: revalidateResult.forwardResponse!,
-              responseBody: responseBody,
-            );
-          }
-        }));
+            if (revalidateResult.forwardResponse != null) {
+              final responseBody = await revalidateResult.forwardResponse!.fold(
+                <int>[],
+                (previous, element) => previous..addAll(element),
+              );
+
+              await update(
+                method: request.method,
+                uri: request.uri,
+                requestHeaders: request.headers,
+                firstByteSentTime: request.firstByteSentTime!,
+                response: revalidateResult.forwardResponse!,
+                responseBody: responseBody,
+              );
+            }
+          }),
+        );
       } else {
         final revalidateResult = await revalidateResultFuture;
 
@@ -313,9 +301,11 @@ class HttpxCacheImpl implements HttpxCache {
             return revalidateResult.forwardResponse ?? voidResponse;
           } else {
             // https://datatracker.ietf.org/doc/html/rfc5861#section-4
-            final staleIfError = context.isStaleIfErrorAllowed == true &&
-                kStaleIfErrorStatusCodes
-                    .contains(revalidateResult.response?.status ?? 0);
+            final staleIfError =
+                context.isStaleIfErrorAllowed == true &&
+                kStaleIfErrorStatusCodes.contains(
+                  revalidateResult.response?.status ?? 0,
+                );
 
             if (!staleIfError) {
               logCallback?.call(
@@ -350,13 +340,7 @@ class HttpxCacheImpl implements HttpxCache {
     );
 
     logCallback?.call(
-      '[${request.method} ${request.uri} CACHE] Returning cached response: ${{
-        'firstByteReceivedTime': cacheResponse.firstByteReceivedTime,
-        'redirects': cacheResponse.redirects,
-        'status': cacheResponse.status,
-        'statusText': cacheResponse.statusText,
-        'headers': cacheResponse.headers,
-      }.inspect()}',
+      '[${request.method} ${request.uri} CACHE] Returning cached response: ${{'firstByteReceivedTime': cacheResponse.firstByteReceivedTime, 'redirects': cacheResponse.redirects, 'status': cacheResponse.status, 'statusText': cacheResponse.statusText, 'headers': cacheResponse.headers}.inspect()}',
     );
 
     return cacheResponse;
@@ -377,11 +361,7 @@ class HttpxCacheImpl implements HttpxCache {
     }
 
     logCallback?.call(
-      '[${request.method} ${request.uri} CACHE] Conditional request... ${{
-        'ifNoneMatch': ifNoneMatch,
-        'ifModifiedSince': ifModifiedSince,
-        'method': conditionalMethod,
-      }.inspect()}',
+      '[${request.method} ${request.uri} CACHE] Conditional request... ${{'ifNoneMatch': ifNoneMatch, 'ifModifiedSince': ifModifiedSince, 'method': conditionalMethod}.inspect()}',
     );
 
     final stopWatch = Stopwatch();
@@ -410,8 +390,9 @@ class HttpxCacheImpl implements HttpxCache {
         connectionTimeout: stopWatch.timeLeft(timeout, connectionTimeout),
       );
 
-      conditionalResponse =
-          await conditionalRequest.close(stopWatch.timeLeft(timeout));
+      conditionalResponse = await conditionalRequest.close(
+        stopWatch.timeLeft(timeout),
+      );
     } catch (error) {
       logCallback?.call(
         '[${request.method} ${request.uri} CACHE] Conditional request failed: $error',
@@ -431,8 +412,9 @@ class HttpxCacheImpl implements HttpxCache {
 
     return _ConditionalRequestResult(
       response: conditionalResponse,
-      cacheableResponse:
-          cacheableStatusCode.contains(conditionalResponse.status),
+      cacheableResponse: cacheableStatusCode.contains(
+        conditionalResponse.status,
+      ),
       forwardResponse: conditionalMethod == request.method,
     );
   }
@@ -476,10 +458,13 @@ class HttpxCacheImpl implements HttpxCache {
 
     // https://datatracker.ietf.org/doc/html/rfc7232#section-2.3
     // They (should) all have the same lastModified header so we take the first entry as reference.
-    final ifModifiedSince = preferredStoreEntries
-        .firstWhereOrNull((e) => e.responseHeaders.getLastModified() != null)
-        ?.responseHeaders
-        .getLastModified();
+    final ifModifiedSince =
+        preferredStoreEntries
+            .firstWhereOrNull(
+              (e) => e.responseHeaders.getLastModified() != null,
+            )
+            ?.responseHeaders
+            .getLastModified();
 
     final conditionalRequestResult = await _conditionalRequest(
       request: request,
@@ -509,9 +494,10 @@ class HttpxCacheImpl implements HttpxCache {
 
     return _DisambiguateResult(
       storeEntry: matchingStoreEntry,
-      forwardResponse: conditionalRequestResult?.forwardResponse == true
-          ? conditionalRequestResult?.response
-          : null,
+      forwardResponse:
+          conditionalRequestResult?.forwardResponse == true
+              ? conditionalRequestResult?.response
+              : null,
     );
   }
 
@@ -546,15 +532,13 @@ class HttpxCacheImpl implements HttpxCache {
           conditionalRequestResponse?.status == HttpStatus.preconditionFailed;
     }
 
-    final entryMatch = notModified ||
+    final entryMatch =
+        notModified ||
         (conditionalRequestResponse?.headers.getEtag() == etag &&
             conditionalRequestResponse?.status == storeEntry.status);
 
     logCallback?.call(
-      '[${request.method} ${request.uri} CACHE] Validation done: ${{
-        'entryMatch': entryMatch,
-        'notModified': notModified,
-      }.inspect()}',
+      '[${request.method} ${request.uri} CACHE] Validation done: ${{'entryMatch': entryMatch, 'notModified': notModified}.inspect()}',
     );
 
     if (!entryMatch) {

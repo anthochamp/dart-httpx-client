@@ -31,24 +31,26 @@ class HttpxBuiltinHttpResponse extends Stream<List<int>>
   }) {
     _headers = HttpxHeaders.fromHttpHeaders(_httpClientResponse.headers);
 
-    logCallback?.call('[$method $uri] Received response status and headers: ${{
-      'redirects': _httpClientResponse.redirects,
-      'connectionInfo': {
-        'localPort': _httpClientResponse.connectionInfo?.localPort,
-        'remoteAddress': _httpClientResponse.connectionInfo?.remoteAddress,
-        'remotePort': _httpClientResponse.connectionInfo?.remotePort,
-      },
-      'statusCode': _httpClientResponse.statusCode,
-      'reasonPhrase': _httpClientResponse.reasonPhrase,
-      'headers': _headers,
-      'persistantConnection': _httpClientResponse.persistentConnection,
-    }.inspect()}');
+    logCallback?.call(
+      '[$method $uri] Received response status and headers: ${{
+        'redirects': _httpClientResponse.redirects,
+        'connectionInfo': {'localPort': _httpClientResponse.connectionInfo?.localPort, 'remoteAddress': _httpClientResponse.connectionInfo?.remoteAddress, 'remotePort': _httpClientResponse.connectionInfo?.remotePort},
+        'statusCode': _httpClientResponse.statusCode,
+        'reasonPhrase': _httpClientResponse.reasonPhrase,
+        'headers': _headers,
+        'persistantConnection': _httpClientResponse.persistentConnection,
+      }.inspect()}',
+    );
 
-    unawaited(_httpClientResponse
-        .pipe(_streamController)
-        .then((_) => logCallback?.call(
+    unawaited(
+      _httpClientResponse
+          .pipe(_streamController)
+          .then(
+            (_) => logCallback?.call(
               '[$method $uri] Response reception completed.',
-            )));
+            ),
+          ),
+    );
   }
 
   late final HttpxHeaders _headers;
@@ -77,13 +79,12 @@ class HttpxBuiltinHttpResponse extends Stream<List<int>>
     Function? onError,
     void Function()? onDone,
     bool? cancelOnError,
-  }) =>
-      _streamController.stream.listen(
-        onData,
-        onError: onError,
-        onDone: onDone,
-        cancelOnError: cancelOnError,
-      );
+  }) => _streamController.stream.listen(
+    onData,
+    onError: onError,
+    onDone: onDone,
+    cancelOnError: cancelOnError,
+  );
 
   @override
   // ignore: no-empty-block

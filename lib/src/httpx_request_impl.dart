@@ -29,9 +29,9 @@ class HttpxRequestImpl implements HttpxRequest {
     required this.connectionTimeout,
     required this.createNetworkRequestCallback,
     required this.cache,
-  })  : _method = method,
-        _uri = uri,
-        _headers = headers;
+  }) : _method = method,
+       _uri = uri,
+       _headers = headers;
 
   final String _method;
   final Uri _uri;

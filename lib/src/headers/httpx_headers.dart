@@ -38,25 +38,27 @@ class HttpxHeaders {
   static bool entriesEquals(HttpxHeadersEntries a, HttpxHeadersEntries b) {
     final keys = [...a.keys, ...b.keys];
 
-    return keys.every((key) =>
-        a[key] != null &&
-        b[key] != null &&
-        HttpxHeaders.headerValuesEquals(a[key]!, b[key]!));
+    return keys.every(
+      (key) =>
+          a[key] != null &&
+          b[key] != null &&
+          HttpxHeaders.headerValuesEquals(a[key]!, b[key]!),
+    );
   }
 
   factory HttpxHeaders([Iterable<String>? unfoldableNames]) =>
       HttpxHeaders._(unfoldableNames);
 
   HttpxHeaders._([Iterable<String>? unfoldableNames, _HttpxHeadersMap? map])
-      : _unfoldableNames = unfoldableNames?.map((e) => e.toLowerCase()) ??
-            kDefaultUnfoldableNames,
-        _map = map ?? _HttpxHeadersMap();
+    : _unfoldableNames =
+          unfoldableNames?.map((e) => e.toLowerCase()) ??
+          kDefaultUnfoldableNames,
+      _map = map ?? _HttpxHeadersMap();
 
   factory HttpxHeaders.fromMap(
     Map<HttpxHeaderName, dynamic> map, [
     Iterable<HttpxHeaderName>? unfoldableNames,
-  ]) =>
-      HttpxHeaders._(unfoldableNames).copyWith(map);
+  ]) => HttpxHeaders._(unfoldableNames).copyWith(map);
 
   factory HttpxHeaders.fromHttpHeaders(
     HttpHeaders httpHeaders, [
@@ -96,31 +98,29 @@ class HttpxHeaders {
     return _map.map((key, value) {
       final lowerCasedName = key.toLowerCase();
 
-      return MapEntry(
-        lowerCasedNames ? lowerCasedName : key,
-        value,
-      );
+      return MapEntry(lowerCasedNames ? lowerCasedName : key, value);
     });
   }
 
   HttpxHeadersFoldedEntries getFoldedEntries({bool lowerCasedNames = true}) {
-    return Map.fromEntries(_map.entries.expand((element) {
-      final lowerCasedName = element.key.toLowerCase();
+    return Map.fromEntries(
+      _map.entries.expand((element) {
+        final lowerCasedName = element.key.toLowerCase();
 
-      if (_unfoldableNames.contains(lowerCasedName)) {
-        return element.value.map((e) => MapEntry(
+        if (_unfoldableNames.contains(lowerCasedName)) {
+          return element.value.map(
+            (e) => MapEntry(lowerCasedNames ? lowerCasedName : element.key, e),
+          );
+        } else {
+          return [
+            MapEntry(
               lowerCasedNames ? lowerCasedName : element.key,
-              e,
-            ));
-      } else {
-        return [
-          MapEntry(
-            lowerCasedNames ? lowerCasedName : element.key,
-            HttpxHeaderValueParser.httpList(element.value),
-          ),
-        ];
-      }
-    }));
+              HttpxHeaderValueParser.httpList(element.value),
+            ),
+          ];
+        }
+      }),
+    );
   }
 
   bool contains(HttpxHeaderName name) => _map.containsKey(name);
@@ -129,15 +129,13 @@ class HttpxHeaders {
     HttpxHeaderName name,
     HttpxHeaderValue value, {
     bool ifNotPresent = false,
-  }) =>
-      addAll(name, [value], ifNotPresent: ifNotPresent);
+  }) => addAll(name, [value], ifNotPresent: ifNotPresent);
 
   void addAll(
     HttpxHeaderName name,
     HttpxHeaderValues values, {
     bool ifNotPresent = false,
-  }) =>
-      set(name, [...this[name] ?? [], ...values], ifNotPresent: ifNotPresent);
+  }) => set(name, [...this[name] ?? [], ...values], ifNotPresent: ifNotPresent);
 
   void set(
     HttpxHeaderName name,
@@ -182,10 +180,8 @@ class HttpxHeaders {
     _map.clear();
   }
 
-  HttpxHeaders clone() => HttpxHeaders._(
-        [..._unfoldableNames],
-        _HttpxHeadersMap.from(_map),
-      );
+  HttpxHeaders clone() =>
+      HttpxHeaders._([..._unfoldableNames], _HttpxHeadersMap.from(_map));
 
   HttpxHeaders copyWith(Map<HttpxHeaderName, dynamic> map, {bool add = false}) {
     final instance = clone();
@@ -223,8 +219,9 @@ class HttpxHeaders {
   }
 
   bool matchAll(HttpxHeadersEntries entries) {
-    return entries.entries.every((element) =>
-        headerValuesEquals(this[element.key] ?? [], element.value));
+    return entries.entries.every(
+      (element) => headerValuesEquals(this[element.key] ?? [], element.value),
+    );
   }
 
   @override
@@ -234,22 +231,24 @@ class HttpxHeaders {
   ]) {
     return getFoldedEntries(lowerCasedNames: false)
         .map<String, String>((key, value) {
-      if (hideSensitiveHeadersValues &&
-          kSensitiveHeadersNames.any((element) =>
-              RegExp(element, caseSensitive: false).hasMatch(key))) {
-        // ignore: avoid-non-ascii-symbols
-        return MapEntry(key, '… (sensitive, ${value.length} bytes hidden)');
-      } else {
-        return MapEntry(
-          key,
-          value.inspect(
-            InspectOptions(maxStringLength: valueTruncateLength),
-          ),
+          if (hideSensitiveHeadersValues &&
+              kSensitiveHeadersNames.any(
+                (element) =>
+                    RegExp(element, caseSensitive: false).hasMatch(key),
+              )) {
+            // ignore: avoid-non-ascii-symbols
+            return MapEntry(key, '… (sensitive, ${value.length} bytes hidden)');
+          } else {
+            return MapEntry(
+              key,
+              value.inspect(
+                InspectOptions(maxStringLength: valueTruncateLength),
+              ),
+            );
+          }
+        })
+        .inspect(
+          const InspectOptions(mapKeyValueSep: ': ', preferCompact: false),
         );
-      }
-    }).inspect(const InspectOptions(
-      mapKeyValueSep: ': ',
-      preferCompact: false,
-    ));
   }
 }

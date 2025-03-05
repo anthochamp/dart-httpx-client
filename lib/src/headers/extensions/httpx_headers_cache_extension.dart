@@ -64,22 +64,26 @@ class HttpxCacheControl {
   factory HttpxCacheControl.fromMap(Map<String, String?> map) {
     return HttpxCacheControl(
       immutable: map.containsKey('immutable'),
-      maxAgeValue: map.containsKey('max-age')
-          ? Duration(seconds: int.parse(map['max-age']!))
-          : null,
+      maxAgeValue:
+          map.containsKey('max-age')
+              ? Duration(seconds: int.parse(map['max-age']!))
+              : null,
       maxStale: map.containsKey('max-stale'),
-      maxStaleValue: map['max-stale'] != null
-          ? Duration(seconds: int.parse(map['max-stale']!))
-          : null,
-      minFreshValue: map.containsKey('max-fresh')
-          ? Duration(seconds: int.parse(map['max-fresh']!))
-          : null,
+      maxStaleValue:
+          map['max-stale'] != null
+              ? Duration(seconds: int.parse(map['max-stale']!))
+              : null,
+      minFreshValue:
+          map.containsKey('max-fresh')
+              ? Duration(seconds: int.parse(map['max-fresh']!))
+              : null,
       noCache: map.containsKey('no-cache'),
-      noCacheValues: map['no-cache'] != null
-          ? HttpxHeaderValueParser.parseHttpList(
-              HttpxHeaderValueParser.parseQuotedString(map['no-cache']!),
-            )
-          : const [],
+      noCacheValues:
+          map['no-cache'] != null
+              ? HttpxHeaderValueParser.parseHttpList(
+                HttpxHeaderValueParser.parseQuotedString(map['no-cache']!),
+              )
+              : const [],
       noStore: map.containsKey('no-store'),
       noTransform: map.containsKey('no-transform'),
       onlyIfCached: map.containsKey('only-if-cached'),
@@ -87,21 +91,25 @@ class HttpxCacheControl {
       mustUnderstand: map.containsKey('must-understand'),
       public: map.containsKey('public'),
       private: map.containsKey('private'),
-      privateValues: map['private'] != null
-          ? HttpxHeaderValueParser.parseHttpList(
-              HttpxHeaderValueParser.parseQuotedString(map['private']!),
-            )
-          : const [],
+      privateValues:
+          map['private'] != null
+              ? HttpxHeaderValueParser.parseHttpList(
+                HttpxHeaderValueParser.parseQuotedString(map['private']!),
+              )
+              : const [],
       proxyRevalidate: map.containsKey('proxy-revalidate'),
-      sMaxAgeValue: map.containsKey('s-maxage')
-          ? Duration(seconds: int.parse(map['s-maxage']!))
-          : null,
-      staleWhileRevalidateValue: map.containsKey('stale-while-revalidate')
-          ? Duration(seconds: int.parse(map['stale-while-revalidate']!))
-          : null,
-      staleIfErrorValue: map.containsKey('stale-if-error')
-          ? Duration(seconds: int.parse(map['stale-if-error']!))
-          : null,
+      sMaxAgeValue:
+          map.containsKey('s-maxage')
+              ? Duration(seconds: int.parse(map['s-maxage']!))
+              : null,
+      staleWhileRevalidateValue:
+          map.containsKey('stale-while-revalidate')
+              ? Duration(seconds: int.parse(map['stale-while-revalidate']!))
+              : null,
+      staleIfErrorValue:
+          map.containsKey('stale-if-error')
+              ? Duration(seconds: int.parse(map['stale-if-error']!))
+              : null,
     );
   }
 
@@ -118,43 +126,42 @@ class HttpxCacheControl {
   }
 
   Map<String, String?> toMap() => {
-        if (immutable) 'immutable': null,
-        if (maxAgeValue != null) 'max-age': maxAgeValue!.inSeconds.toString(),
-        if (maxStale) 'max-stale': maxStaleValue?.inSeconds.toString(),
-        if (minFreshValue != null)
-          'min-fresh': minFreshValue!.inSeconds.toString(),
-        if (noCache)
-          'no-cache': noCacheValues.isEmpty
+    if (immutable) 'immutable': null,
+    if (maxAgeValue != null) 'max-age': maxAgeValue!.inSeconds.toString(),
+    if (maxStale) 'max-stale': maxStaleValue?.inSeconds.toString(),
+    if (minFreshValue != null) 'min-fresh': minFreshValue!.inSeconds.toString(),
+    if (noCache)
+      'no-cache':
+          noCacheValues.isEmpty
               ? null
               : HttpxHeaderValueParser.quotedString(
-                  HttpxHeaderValueParser.httpList(noCacheValues),
-                ),
-        if (noStore) 'no-store': null,
-        if (noTransform) 'no-transform': null,
-        if (onlyIfCached) 'only-if-cached': null,
-        if (mustRevalidate) 'must-revalidate': null,
-        if (mustUnderstand) 'must-understand': null,
-        if (public) 'public': null,
-        if (private)
-          'private': privateValues.isEmpty
+                HttpxHeaderValueParser.httpList(noCacheValues),
+              ),
+    if (noStore) 'no-store': null,
+    if (noTransform) 'no-transform': null,
+    if (onlyIfCached) 'only-if-cached': null,
+    if (mustRevalidate) 'must-revalidate': null,
+    if (mustUnderstand) 'must-understand': null,
+    if (public) 'public': null,
+    if (private)
+      'private':
+          privateValues.isEmpty
               ? null
               : HttpxHeaderValueParser.quotedString(
-                  HttpxHeaderValueParser.httpList(privateValues),
-                ),
-        if (proxyRevalidate) 'proxy-revalidate': null,
-        if (sMaxAgeValue != null)
-          's-maxage': sMaxAgeValue!.inSeconds.toString(),
-        if (staleWhileRevalidateValue != null)
-          'stale-while-revalidate':
-              staleWhileRevalidateValue!.inSeconds.toString(),
-        if (staleIfErrorValue != null)
-          'stale-if-error': staleIfErrorValue!.inSeconds.toString(),
-      };
+                HttpxHeaderValueParser.httpList(privateValues),
+              ),
+    if (proxyRevalidate) 'proxy-revalidate': null,
+    if (sMaxAgeValue != null) 's-maxage': sMaxAgeValue!.inSeconds.toString(),
+    if (staleWhileRevalidateValue != null)
+      'stale-while-revalidate': staleWhileRevalidateValue!.inSeconds.toString(),
+    if (staleIfErrorValue != null)
+      'stale-if-error': staleIfErrorValue!.inSeconds.toString(),
+  };
 
   HttpxHeaderValues toHeaderValues() {
     return toMap().entries.map(
-          (e) => '${e.key}${e.value == null ? '' : '=${e.value}'}',
-        );
+      (e) => '${e.key}${e.value == null ? '' : '=${e.value}'}',
+    );
   }
 
   @override

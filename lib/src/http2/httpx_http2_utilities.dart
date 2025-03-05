@@ -11,8 +11,11 @@ import '../headers/httpx_headers.dart';
 
 class HttpxHttp2Utilities {
   static Map<String, String> http2HeadersDecode(HeadersStreamMessage message) =>
-      Map.fromEntries(message.headers
-          .map((e) => MapEntry(utf8.decode(e.name), utf8.decode(e.value))));
+      Map.fromEntries(
+        message.headers.map(
+          (e) => MapEntry(utf8.decode(e.name), utf8.decode(e.value)),
+        ),
+      );
 
   static List<Header> http2HeadersEncode({
     required Uri uri,
@@ -32,7 +35,8 @@ class HttpxHttp2Utilities {
       headers_.removeAll(HttpHeaders.hostHeader);
     }
 
-    String path = uri.path +
+    String path =
+        uri.path +
         (uri.hasQuery ? '?${uri.query}' : '') +
         (uri.hasFragment ? '#${uri.fragment}' : '');
     if (path.isEmpty && path == '/') {
