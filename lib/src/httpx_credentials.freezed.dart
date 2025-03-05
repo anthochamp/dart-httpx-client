@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,489 +10,210 @@ part of 'httpx_credentials.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$HttpxCredentials {
-  String? get realm => throw _privateConstructorUsedError;
-  bool get proxyCredentials => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String realm, String username, String password,
-            bool proxyCredentials)
-        basic,
-    required TResult Function(
-            String? realm, String accessToken, bool proxyCredentials)
-        bearer,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String realm, String username, String password,
-            bool proxyCredentials)?
-        basic,
-    TResult? Function(String? realm, String accessToken, bool proxyCredentials)?
-        bearer,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String realm, String username, String password,
-            bool proxyCredentials)?
-        basic,
-    TResult Function(String? realm, String accessToken, bool proxyCredentials)?
-        bearer,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(HttpxCredentialsBasic value) basic,
-    required TResult Function(HttpxCredentialsBearer value) bearer,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(HttpxCredentialsBasic value)? basic,
-    TResult? Function(HttpxCredentialsBearer value)? bearer,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(HttpxCredentialsBasic value)? basic,
-    TResult Function(HttpxCredentialsBearer value)? bearer,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
 
-  /// Create a copy of HttpxCredentials
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $HttpxCredentialsCopyWith<HttpxCredentials> get copyWith =>
-      throw _privateConstructorUsedError;
+ String? get realm; bool get proxyCredentials;
+/// Create a copy of HttpxCredentials
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$HttpxCredentialsCopyWith<HttpxCredentials> get copyWith => _$HttpxCredentialsCopyWithImpl<HttpxCredentials>(this as HttpxCredentials, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HttpxCredentials&&(identical(other.realm, realm) || other.realm == realm)&&(identical(other.proxyCredentials, proxyCredentials) || other.proxyCredentials == proxyCredentials));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,realm,proxyCredentials);
+
+@override
+String toString() {
+  return 'HttpxCredentials(realm: $realm, proxyCredentials: $proxyCredentials)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $HttpxCredentialsCopyWith<$Res> {
-  factory $HttpxCredentialsCopyWith(
-          HttpxCredentials value, $Res Function(HttpxCredentials) then) =
-      _$HttpxCredentialsCopyWithImpl<$Res, HttpxCredentials>;
-  @useResult
-  $Res call({String realm, bool proxyCredentials});
-}
+abstract mixin class $HttpxCredentialsCopyWith<$Res>  {
+  factory $HttpxCredentialsCopyWith(HttpxCredentials value, $Res Function(HttpxCredentials) _then) = _$HttpxCredentialsCopyWithImpl;
+@useResult
+$Res call({
+ String realm, bool proxyCredentials
+});
 
+
+
+
+}
 /// @nodoc
-class _$HttpxCredentialsCopyWithImpl<$Res, $Val extends HttpxCredentials>
+class _$HttpxCredentialsCopyWithImpl<$Res>
     implements $HttpxCredentialsCopyWith<$Res> {
-  _$HttpxCredentialsCopyWithImpl(this._value, this._then);
+  _$HttpxCredentialsCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final HttpxCredentials _self;
+  final $Res Function(HttpxCredentials) _then;
 
-  /// Create a copy of HttpxCredentials
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? realm = null,
-    Object? proxyCredentials = null,
-  }) {
-    return _then(_value.copyWith(
-      realm: null == realm
-          ? _value.realm!
-          : realm // ignore: cast_nullable_to_non_nullable
-              as String,
-      proxyCredentials: null == proxyCredentials
-          ? _value.proxyCredentials
-          : proxyCredentials // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
+/// Create a copy of HttpxCredentials
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? realm = null,Object? proxyCredentials = null,}) {
+  return _then(_self.copyWith(
+realm: null == realm ? _self.realm! : realm // ignore: cast_nullable_to_non_nullable
+as String,proxyCredentials: null == proxyCredentials ? _self.proxyCredentials : proxyCredentials // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
 }
 
-/// @nodoc
-abstract class _$$HttpxCredentialsBasicImplCopyWith<$Res>
-    implements $HttpxCredentialsCopyWith<$Res> {
-  factory _$$HttpxCredentialsBasicImplCopyWith(
-          _$HttpxCredentialsBasicImpl value,
-          $Res Function(_$HttpxCredentialsBasicImpl) then) =
-      __$$HttpxCredentialsBasicImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String realm, String username, String password, bool proxyCredentials});
 }
 
-/// @nodoc
-class __$$HttpxCredentialsBasicImplCopyWithImpl<$Res>
-    extends _$HttpxCredentialsCopyWithImpl<$Res, _$HttpxCredentialsBasicImpl>
-    implements _$$HttpxCredentialsBasicImplCopyWith<$Res> {
-  __$$HttpxCredentialsBasicImplCopyWithImpl(_$HttpxCredentialsBasicImpl _value,
-      $Res Function(_$HttpxCredentialsBasicImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of HttpxCredentials
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? realm = null,
-    Object? username = null,
-    Object? password = null,
-    Object? proxyCredentials = null,
-  }) {
-    return _then(_$HttpxCredentialsBasicImpl(
-      realm: null == realm
-          ? _value.realm
-          : realm // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      proxyCredentials: null == proxyCredentials
-          ? _value.proxyCredentials
-          : proxyCredentials // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
 
 /// @nodoc
 
-class _$HttpxCredentialsBasicImpl implements HttpxCredentialsBasic {
-  const _$HttpxCredentialsBasicImpl(
-      {required this.realm,
-      required this.username,
-      required this.password,
-      this.proxyCredentials = false});
 
-  @override
-  final String realm;
-  @override
-  final String username;
-  @override
-  final String password;
-  @override
-  @JsonKey()
-  final bool proxyCredentials;
+class HttpxCredentialsBasic implements HttpxCredentials {
+  const HttpxCredentialsBasic({required this.realm, required this.username, required this.password, this.proxyCredentials = false});
+  
 
-  @override
-  String toString() {
-    return 'HttpxCredentials.basic(realm: $realm, username: $username, password: $password, proxyCredentials: $proxyCredentials)';
-  }
+@override final  String realm;
+ final  String username;
+ final  String password;
+@override@JsonKey() final  bool proxyCredentials;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$HttpxCredentialsBasicImpl &&
-            (identical(other.realm, realm) || other.realm == realm) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.proxyCredentials, proxyCredentials) ||
-                other.proxyCredentials == proxyCredentials));
-  }
+/// Create a copy of HttpxCredentials
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$HttpxCredentialsBasicCopyWith<HttpxCredentialsBasic> get copyWith => _$HttpxCredentialsBasicCopyWithImpl<HttpxCredentialsBasic>(this, _$identity);
 
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, realm, username, password, proxyCredentials);
 
-  /// Create a copy of HttpxCredentials
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$HttpxCredentialsBasicImplCopyWith<_$HttpxCredentialsBasicImpl>
-      get copyWith => __$$HttpxCredentialsBasicImplCopyWithImpl<
-          _$HttpxCredentialsBasicImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String realm, String username, String password,
-            bool proxyCredentials)
-        basic,
-    required TResult Function(
-            String? realm, String accessToken, bool proxyCredentials)
-        bearer,
-  }) {
-    return basic(realm, username, password, proxyCredentials);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String realm, String username, String password,
-            bool proxyCredentials)?
-        basic,
-    TResult? Function(String? realm, String accessToken, bool proxyCredentials)?
-        bearer,
-  }) {
-    return basic?.call(realm, username, password, proxyCredentials);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String realm, String username, String password,
-            bool proxyCredentials)?
-        basic,
-    TResult Function(String? realm, String accessToken, bool proxyCredentials)?
-        bearer,
-    required TResult orElse(),
-  }) {
-    if (basic != null) {
-      return basic(realm, username, password, proxyCredentials);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(HttpxCredentialsBasic value) basic,
-    required TResult Function(HttpxCredentialsBearer value) bearer,
-  }) {
-    return basic(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(HttpxCredentialsBasic value)? basic,
-    TResult? Function(HttpxCredentialsBearer value)? bearer,
-  }) {
-    return basic?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(HttpxCredentialsBasic value)? basic,
-    TResult Function(HttpxCredentialsBearer value)? bearer,
-    required TResult orElse(),
-  }) {
-    if (basic != null) {
-      return basic(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HttpxCredentialsBasic&&(identical(other.realm, realm) || other.realm == realm)&&(identical(other.username, username) || other.username == username)&&(identical(other.password, password) || other.password == password)&&(identical(other.proxyCredentials, proxyCredentials) || other.proxyCredentials == proxyCredentials));
 }
 
-abstract class HttpxCredentialsBasic implements HttpxCredentials {
-  const factory HttpxCredentialsBasic(
-      {required final String realm,
-      required final String username,
-      required final String password,
-      final bool proxyCredentials}) = _$HttpxCredentialsBasicImpl;
 
-  @override
-  String get realm;
-  String get username;
-  String get password;
-  @override
-  bool get proxyCredentials;
+@override
+int get hashCode => Object.hash(runtimeType,realm,username,password,proxyCredentials);
 
-  /// Create a copy of HttpxCredentials
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$HttpxCredentialsBasicImplCopyWith<_$HttpxCredentialsBasicImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'HttpxCredentials.basic(realm: $realm, username: $username, password: $password, proxyCredentials: $proxyCredentials)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$HttpxCredentialsBearerImplCopyWith<$Res>
-    implements $HttpxCredentialsCopyWith<$Res> {
-  factory _$$HttpxCredentialsBearerImplCopyWith(
-          _$HttpxCredentialsBearerImpl value,
-          $Res Function(_$HttpxCredentialsBearerImpl) then) =
-      __$$HttpxCredentialsBearerImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String? realm, String accessToken, bool proxyCredentials});
+abstract mixin class $HttpxCredentialsBasicCopyWith<$Res> implements $HttpxCredentialsCopyWith<$Res> {
+  factory $HttpxCredentialsBasicCopyWith(HttpxCredentialsBasic value, $Res Function(HttpxCredentialsBasic) _then) = _$HttpxCredentialsBasicCopyWithImpl;
+@override @useResult
+$Res call({
+ String realm, String username, String password, bool proxyCredentials
+});
+
+
+
+
+}
+/// @nodoc
+class _$HttpxCredentialsBasicCopyWithImpl<$Res>
+    implements $HttpxCredentialsBasicCopyWith<$Res> {
+  _$HttpxCredentialsBasicCopyWithImpl(this._self, this._then);
+
+  final HttpxCredentialsBasic _self;
+  final $Res Function(HttpxCredentialsBasic) _then;
+
+/// Create a copy of HttpxCredentials
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? realm = null,Object? username = null,Object? password = null,Object? proxyCredentials = null,}) {
+  return _then(HttpxCredentialsBasic(
+realm: null == realm ? _self.realm : realm // ignore: cast_nullable_to_non_nullable
+as String,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
+as String,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as String,proxyCredentials: null == proxyCredentials ? _self.proxyCredentials : proxyCredentials // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
 }
 
-/// @nodoc
-class __$$HttpxCredentialsBearerImplCopyWithImpl<$Res>
-    extends _$HttpxCredentialsCopyWithImpl<$Res, _$HttpxCredentialsBearerImpl>
-    implements _$$HttpxCredentialsBearerImplCopyWith<$Res> {
-  __$$HttpxCredentialsBearerImplCopyWithImpl(
-      _$HttpxCredentialsBearerImpl _value,
-      $Res Function(_$HttpxCredentialsBearerImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of HttpxCredentials
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? realm = freezed,
-    Object? accessToken = null,
-    Object? proxyCredentials = null,
-  }) {
-    return _then(_$HttpxCredentialsBearerImpl(
-      realm: freezed == realm
-          ? _value.realm
-          : realm // ignore: cast_nullable_to_non_nullable
-              as String?,
-      accessToken: null == accessToken
-          ? _value.accessToken
-          : accessToken // ignore: cast_nullable_to_non_nullable
-              as String,
-      proxyCredentials: null == proxyCredentials
-          ? _value.proxyCredentials
-          : proxyCredentials // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$HttpxCredentialsBearerImpl implements HttpxCredentialsBearer {
-  const _$HttpxCredentialsBearerImpl(
-      {this.realm, required this.accessToken, this.proxyCredentials = false});
 
-  @override
-  final String? realm;
-  @override
-  final String accessToken;
-  @override
-  @JsonKey()
-  final bool proxyCredentials;
+class HttpxCredentialsBearer implements HttpxCredentials {
+  const HttpxCredentialsBearer({this.realm, required this.accessToken, this.proxyCredentials = false});
+  
 
-  @override
-  String toString() {
-    return 'HttpxCredentials.bearer(realm: $realm, accessToken: $accessToken, proxyCredentials: $proxyCredentials)';
-  }
+@override final  String? realm;
+ final  String accessToken;
+@override@JsonKey() final  bool proxyCredentials;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$HttpxCredentialsBearerImpl &&
-            (identical(other.realm, realm) || other.realm == realm) &&
-            (identical(other.accessToken, accessToken) ||
-                other.accessToken == accessToken) &&
-            (identical(other.proxyCredentials, proxyCredentials) ||
-                other.proxyCredentials == proxyCredentials));
-  }
+/// Create a copy of HttpxCredentials
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$HttpxCredentialsBearerCopyWith<HttpxCredentialsBearer> get copyWith => _$HttpxCredentialsBearerCopyWithImpl<HttpxCredentialsBearer>(this, _$identity);
 
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, realm, accessToken, proxyCredentials);
 
-  /// Create a copy of HttpxCredentials
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$HttpxCredentialsBearerImplCopyWith<_$HttpxCredentialsBearerImpl>
-      get copyWith => __$$HttpxCredentialsBearerImplCopyWithImpl<
-          _$HttpxCredentialsBearerImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String realm, String username, String password,
-            bool proxyCredentials)
-        basic,
-    required TResult Function(
-            String? realm, String accessToken, bool proxyCredentials)
-        bearer,
-  }) {
-    return bearer(realm, accessToken, proxyCredentials);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String realm, String username, String password,
-            bool proxyCredentials)?
-        basic,
-    TResult? Function(String? realm, String accessToken, bool proxyCredentials)?
-        bearer,
-  }) {
-    return bearer?.call(realm, accessToken, proxyCredentials);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String realm, String username, String password,
-            bool proxyCredentials)?
-        basic,
-    TResult Function(String? realm, String accessToken, bool proxyCredentials)?
-        bearer,
-    required TResult orElse(),
-  }) {
-    if (bearer != null) {
-      return bearer(realm, accessToken, proxyCredentials);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(HttpxCredentialsBasic value) basic,
-    required TResult Function(HttpxCredentialsBearer value) bearer,
-  }) {
-    return bearer(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(HttpxCredentialsBasic value)? basic,
-    TResult? Function(HttpxCredentialsBearer value)? bearer,
-  }) {
-    return bearer?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(HttpxCredentialsBasic value)? basic,
-    TResult Function(HttpxCredentialsBearer value)? bearer,
-    required TResult orElse(),
-  }) {
-    if (bearer != null) {
-      return bearer(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HttpxCredentialsBearer&&(identical(other.realm, realm) || other.realm == realm)&&(identical(other.accessToken, accessToken) || other.accessToken == accessToken)&&(identical(other.proxyCredentials, proxyCredentials) || other.proxyCredentials == proxyCredentials));
 }
 
-abstract class HttpxCredentialsBearer implements HttpxCredentials {
-  const factory HttpxCredentialsBearer(
-      {final String? realm,
-      required final String accessToken,
-      final bool proxyCredentials}) = _$HttpxCredentialsBearerImpl;
 
-  @override
-  String? get realm;
-  String get accessToken;
-  @override
-  bool get proxyCredentials;
+@override
+int get hashCode => Object.hash(runtimeType,realm,accessToken,proxyCredentials);
 
-  /// Create a copy of HttpxCredentials
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$HttpxCredentialsBearerImplCopyWith<_$HttpxCredentialsBearerImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'HttpxCredentials.bearer(realm: $realm, accessToken: $accessToken, proxyCredentials: $proxyCredentials)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class $HttpxCredentialsBearerCopyWith<$Res> implements $HttpxCredentialsCopyWith<$Res> {
+  factory $HttpxCredentialsBearerCopyWith(HttpxCredentialsBearer value, $Res Function(HttpxCredentialsBearer) _then) = _$HttpxCredentialsBearerCopyWithImpl;
+@override @useResult
+$Res call({
+ String? realm, String accessToken, bool proxyCredentials
+});
+
+
+
+
+}
+/// @nodoc
+class _$HttpxCredentialsBearerCopyWithImpl<$Res>
+    implements $HttpxCredentialsBearerCopyWith<$Res> {
+  _$HttpxCredentialsBearerCopyWithImpl(this._self, this._then);
+
+  final HttpxCredentialsBearer _self;
+  final $Res Function(HttpxCredentialsBearer) _then;
+
+/// Create a copy of HttpxCredentials
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? realm = freezed,Object? accessToken = null,Object? proxyCredentials = null,}) {
+  return _then(HttpxCredentialsBearer(
+realm: freezed == realm ? _self.realm : realm // ignore: cast_nullable_to_non_nullable
+as String?,accessToken: null == accessToken ? _self.accessToken : accessToken // ignore: cast_nullable_to_non_nullable
+as String,proxyCredentials: null == proxyCredentials ? _self.proxyCredentials : proxyCredentials // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
+}
+
+// dart format on
