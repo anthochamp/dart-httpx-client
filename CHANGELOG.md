@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0
+
+- Update SDK environment requirement (>= 3.7.0 && <4.0.0)
+- Upgrade freezed/freezed_annotation packages
+
 ## 0.2.0
 
 - Upgrade freezed/freezed_annotation packages
