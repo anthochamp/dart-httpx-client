@@ -123,7 +123,7 @@ final request = client.createRequest(
 
 <!-- markdownlint-disable MD013 -->
 | CachePolicy | Description |
-|---|---|
+| --- | --- |
 | `standard` (default) | Standard behaviour. |
 | `straightToNetwork` | Behaves as if there is no HTTP cache for the request. It will still update the cache with the response. |
 | `ignoreDirectives` | Uses any response in the HTTP cache matching the request, not paying attention to `Pragma` / `Cache Control` directives in both the request and the cached response(s). |
