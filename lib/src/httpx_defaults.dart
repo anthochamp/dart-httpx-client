@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+// SPDX-FileCopyrightText: © 2023 - 2026 Anthony Champagne <dev@anthonychampagne.fr>
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
@@ -11,7 +11,11 @@ import 'headers/httpx_headers.dart';
 
 const kInitialDefaultMaxRedirects = 5;
 
-const kInitialPersistantConnection = true;
+const kInitialPersistentConnection = true;
+
+@Deprecated('Use kInitialPersistentConnection instead')
+// ignore: constant_identifier_names — deprecated alias retained for backward compatibility
+const kInitialPersistantConnection = kInitialPersistentConnection;
 
 const kInitialConnectionIdleTimeout = Duration(seconds: 30);
 
@@ -27,7 +31,7 @@ final kInitialDefaultHeaders = HttpxHeaders.fromMap({
 
 const kInitialDefaultCachePolicy = HttpxCachePolicy.standard;
 
-const kKnownSecureConnectionUriSchemes = ['ipps'];
+const kKnownSecureConnectionUriSchemes = ['https', 'ipps'];
 
 bool initialSecureConnectionTestCallback(String uriScheme) =>
     uriScheme.endsWith('https') ||

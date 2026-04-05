@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+// SPDX-FileCopyrightText: © 2023 - 2026 Anthony Champagne <dev@anthonychampagne.fr>
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
@@ -38,7 +38,7 @@ class HttpxBuiltinHttpResponse extends Stream<List<int>>
         'statusCode': _httpClientResponse.statusCode,
         'reasonPhrase': _httpClientResponse.reasonPhrase,
         'headers': _headers,
-        'persistantConnection': _httpClientResponse.persistentConnection,
+        'persistentConnection': _httpClientResponse.persistentConnection,
       }.inspect()}',
     );
 

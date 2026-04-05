@@ -1,13 +1,13 @@
 name: ac_httpx_client
 description: HTTP1/2 client in the style of Dart's HttpClient with an integrated RFC-compliant private cache.
-version: 0.3.0
+version: 0.3.1
 repository: https://github.com/anthochamp/dart-httpx-client
 
 environment:
   sdk: ">=3.7.0 <4.0.0"
 
 dependencies:
-  ac_dart_essentials: ^0.2.1
+  ac_dart_essentials: ^0.3.1
   async: ^2.10.0
   collection: ^1.17.0
   freezed_annotation: ^3.0.0

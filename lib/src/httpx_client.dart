@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+// SPDX-FileCopyrightText: © 2023 - 2026 Anthony Champagne <dev@anthonychampagne.fr>
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
@@ -45,8 +45,13 @@ abstract class HttpxClient {
   Duration get connectionIdleTimeout;
   set connectionIdleTimeout(Duration connectionIdleTimeout);
 
-  bool get persistantConnection;
-  set persistantConnection(bool persistantConnection);
+  bool get persistentConnection;
+  set persistentConnection(bool persistentConnection);
+
+  @Deprecated('Use persistentConnection instead')
+  bool get persistantConnection => persistentConnection;
+  @Deprecated('Use persistentConnection instead')
+  set persistantConnection(bool value) => persistentConnection = value;
 
   HttpxCachePolicy get defaultCachePolicy;
   set defaultCachePolicy(HttpxCachePolicy defaultCachePolicy);

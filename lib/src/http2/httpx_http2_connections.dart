@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+// SPDX-FileCopyrightText: © 2023 - 2026 Anthony Champagne <dev@anthonychampagne.fr>
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
@@ -44,7 +44,7 @@ class HttpxHttp2Connections {
   static const alpnProtocols = ['h2'];
 
   HttpxHttp2Connections({
-    required this.persistantConnection,
+    required this.persistentConnection,
     required this.connectionIdleTimeout,
     required this.clientSettings,
   });
@@ -54,7 +54,7 @@ class HttpxHttp2Connections {
 
   HttpxLogCallback? logCallback;
   ClientSettings clientSettings;
-  bool persistantConnection;
+  bool persistentConnection;
   Duration connectionIdleTimeout;
 
   Future<ClientTransportConnection> add(
@@ -115,11 +115,11 @@ class HttpxHttp2Connections {
     if (connection != null) {
       if (!isActive) {
         logCallback?.call(
-          'HTTP2 connection to ${connection.host}:${connection.port} is inactive, starting idle timer (timeout: ${persistantConnection ? connectionIdleTimeout : Duration.zero})',
+          'HTTP2 connection to ${connection.host}:${connection.port} is inactive, starting idle timer (timeout: ${persistentConnection ? connectionIdleTimeout : Duration.zero})',
         );
 
         connection.startIdleTimeoutTimer(
-          persistantConnection ? connectionIdleTimeout : Duration.zero,
+          persistentConnection ? connectionIdleTimeout : Duration.zero,
         );
       } else {
         logCallback?.call(

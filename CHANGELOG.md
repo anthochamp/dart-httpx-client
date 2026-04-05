@@ -1,5 +1,30 @@
 # Changelog
 
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.3.1] - 2026-04-05
+
+### Added
+
+- Unit tests for `HttpxCredentials` factory methods (20 tests total across credentials, header
+  value parser, and headers extensions).
+- `example/example.dart` demonstrating `HttpxClient` GET and POST requests.
+
+### Fixed
+
+- `persistentConnection`: corrected spelling throughout; deprecated `persistantConnection`
+  alias retained for backward compatibility
+- `kInitialPersistentConnection`: corrected spelling; deprecated `kInitialPersistantConnection`
+  constant retained
+- `kKnownSecureConnectionUriSchemes` now includes `https`
+
+### Deprecated
+
+- `persistantConnection` getter/setter — use `persistentConnection` instead
+- `kInitialPersistantConnection` — use `kInitialPersistentConnection` instead
+
 ## 0.3.0
 
 - Update SDK environment requirement (>= 3.7.0 && <4.0.0)

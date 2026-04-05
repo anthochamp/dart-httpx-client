@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+// SPDX-FileCopyrightText: © 2023 - 2026 Anthony Champagne <dev@anthonychampagne.fr>
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
@@ -24,7 +24,7 @@ class HttpxBuiltinHttpRequest implements HttpxRequest {
   @override
   final int maxRedirects;
 
-  final bool persistantConnection;
+  final bool persistentConnection;
   final HttpxLogCallback? logCallback;
 
   HttpxBuiltinHttpRequest(
@@ -33,7 +33,7 @@ class HttpxBuiltinHttpRequest implements HttpxRequest {
     required this.uri,
     required this.headers,
     required this.maxRedirects,
-    required this.persistantConnection,
+    required this.persistentConnection,
     required this.logCallback,
   });
 
@@ -126,7 +126,7 @@ class HttpxBuiltinHttpRequest implements HttpxRequest {
 
     httpClientRequest.maxRedirects = maxRedirects;
     httpClientRequest.followRedirects = maxRedirects != 0;
-    httpClientRequest.persistentConnection = persistantConnection;
+    httpClientRequest.persistentConnection = persistentConnection;
 
     headers.mutateHttpHeaders(httpClientRequest.headers, clear: true);
 

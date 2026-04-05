@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+// SPDX-FileCopyrightText: © 2023 - 2026 Anthony Champagne <dev@anthonychampagne.fr>
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
@@ -137,14 +137,11 @@ class HttpxCacheContext {
         requestCacheControl: requestCacheControl,
         freshness: freshnessTimeout,
       ),
-      isStaleWhileRevalidateAllowed: DurationUtil.gt(
+      isStaleWhileRevalidateAllowed: durationGt(
         staleWhileRevalidateTimeout,
         Duration.zero,
       ),
-      isStaleIfErrorAllowed: DurationUtil.gt(
-        staleIfErrorTimeout,
-        Duration.zero,
-      ),
+      isStaleIfErrorAllowed: durationGt(staleIfErrorTimeout, Duration.zero),
     );
   }
 

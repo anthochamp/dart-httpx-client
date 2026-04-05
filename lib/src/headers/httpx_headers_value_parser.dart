@@ -1,8 +1,8 @@
-// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+// SPDX-FileCopyrightText: © 2023 - 2026 Anthony Champagne <dev@anthonychampagne.fr>
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-// ignore_for_file:  member-ordering
+// ignore_for_file: member-ordering — parser constants are ordered by grammar rule reference, not by member type
 
 import 'package:ac_dart_essentials/ac_dart_essentials.dart';
 

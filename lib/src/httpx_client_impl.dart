@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+// SPDX-FileCopyrightText: © 2023 - 2026 Anthony Champagne <dev@anthonychampagne.fr>
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
@@ -58,7 +58,7 @@ class HttpxClientImpl implements HttpxClient {
   final _http2Connections = HttpxHttp2Connections(
     clientSettings: kInitialHttp2ClientSettings,
     connectionIdleTimeout: kInitialConnectionIdleTimeout,
-    persistantConnection: kInitialPersistantConnection,
+    persistentConnection: kInitialPersistentConnection,
   );
   final _knownEndpointAlpnProtocol = <String, String>{};
 
@@ -97,10 +97,17 @@ class HttpxClientImpl implements HttpxClient {
       _builtinHttpConnections.secureConnectionTestCallback = callback;
 
   @override
-  bool get persistantConnection => _http2Connections.persistantConnection;
+  bool get persistentConnection => _http2Connections.persistentConnection;
   @override
-  set persistantConnection(bool persistantConnection) =>
-      _http2Connections.persistantConnection = persistantConnection;
+  set persistentConnection(bool persistentConnection) =>
+      _http2Connections.persistentConnection = persistentConnection;
+
+  @Deprecated('Use persistentConnection instead')
+  @override
+  bool get persistantConnection => persistentConnection;
+  @Deprecated('Use persistentConnection instead')
+  @override
+  set persistantConnection(bool value) => persistentConnection = value;
 
   @override
   http2.ClientSettings get http2ClientSettings =>
@@ -388,7 +395,7 @@ class HttpxClientImpl implements HttpxClient {
         uri: uri,
         headers: headers,
         maxRedirects: maxRedirects,
-        persistantConnection: persistantConnection,
+        persistentConnection: persistentConnection,
         logCallback: logCallback,
       );
     } else {

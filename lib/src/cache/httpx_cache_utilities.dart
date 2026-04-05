@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+// SPDX-FileCopyrightText: © 2023 - 2026 Anthony Champagne <dev@anthonychampagne.fr>
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
@@ -214,7 +214,7 @@ class HttpxCacheUtilities {
     if (staleWhileRevalidateValue != null) {
       final maxAgeValue = responseCacheControl?.maxAgeValue;
       if (maxAgeValue != null) {
-        return DurationUtil.add(staleWhileRevalidateValue, maxAgeValue);
+        return durationAdd(staleWhileRevalidateValue, maxAgeValue);
       }
     }
 
@@ -226,7 +226,7 @@ class HttpxCacheUtilities {
     required HttpxCacheControl? requestCacheControl,
     required HttpxCacheControl? responseCacheControl,
   }) {
-    final staleIfErrorMinValue = DurationUtil.min(
+    final staleIfErrorMinValue = durationMin(
       requestCacheControl?.staleIfErrorValue,
       responseCacheControl?.staleIfErrorValue,
     );
@@ -234,7 +234,7 @@ class HttpxCacheUtilities {
     if (staleIfErrorMinValue != null) {
       final maxAgeValue = responseCacheControl?.maxAgeValue;
       if (maxAgeValue != null) {
-        return DurationUtil.add(staleIfErrorMinValue, maxAgeValue);
+        return durationAdd(staleIfErrorMinValue, maxAgeValue);
       }
     }
 
@@ -245,7 +245,7 @@ class HttpxCacheUtilities {
   static Duration? computeFreshness({
     required Duration? freshnessLifetime,
     required Duration currentAge,
-  }) => DurationUtil.substract(freshnessLifetime, currentAge);
+  }) => durationSubtract(freshnessLifetime, currentAge);
 
   static bool computeIsStale({
     required Duration currentAge,
@@ -259,7 +259,7 @@ class HttpxCacheUtilities {
 
     // https://datatracker.ietf.org/doc/html/rfc7234#section-5.2.1.1
     // https://datatracker.ietf.org/doc/html/rfc7234#section-5.2.2.8
-    final maxAgeMinValue = DurationUtil.min(
+    final maxAgeMinValue = durationMin(
       requestCacheControl?.maxAgeValue,
       responseCacheControl?.maxAgeValue,
     );
